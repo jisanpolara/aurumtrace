@@ -1,0 +1,153 @@
+@import "./tokens.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------
+   Base
+   ------------------------------------------------------------ */
+@layer base {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: var(--at-bg);
+    color: var(--at-text);
+    font-family: var(--at-font-ui);
+    font-size: var(--at-fs-body);
+    line-height: var(--at-leading-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Visible keyboard focus everywhere (WCAG AA) */
+  :focus-visible {
+    outline: none;
+    box-shadow: var(--at-focus);
+    border-radius: var(--at-radius-sm);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(110, 114, 124, 0.35);
+    border-radius: var(--at-radius-pill);
+  }
+}
+
+/* ------------------------------------------------------------
+   Branded component classes — the "core components" from brand.md.
+   Built on tokens so RTL and theming flow through automatically.
+   ------------------------------------------------------------ */
+@layer components {
+  /* Wordmark: Aurum (ink/white) + Trace (gold) */
+  .at-wordmark {
+    font-family: var(--at-font-display);
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .at-wordmark .trace {
+    color: var(--at-gold);
+  }
+
+  /* Uppercase field / eyebrow label */
+  .at-label {
+    font-size: var(--at-fs-label);
+    letter-spacing: var(--at-tracking-label);
+    text-transform: uppercase;
+    color: var(--at-text-faint);
+    font-weight: 600;
+  }
+
+  /* Card */
+  .at-card {
+    background: var(--at-card);
+    border: 1px solid var(--at-hairline);
+    border-radius: var(--at-radius-lg);
+    box-shadow: var(--at-shadow-sm);
+  }
+
+  /* Buttons */
+  .at-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--at-space-2);
+    font-family: var(--at-font-ui);
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: var(--at-radius-sm);
+    padding: 11px 18px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: filter var(--at-dur) var(--at-ease),
+      background var(--at-dur) var(--at-ease);
+  }
+  .at-btn-primary {
+    background: var(--at-gold-gradient);
+    color: var(--at-on-gold);
+    box-shadow: 0 6px 16px -8px rgba(201, 162, 75, 0.8);
+  }
+  .at-btn-primary:hover {
+    filter: brightness(1.04);
+  }
+  .at-btn-secondary {
+    background: var(--at-card);
+    color: var(--at-text);
+    border-color: var(--at-hairline);
+    font-weight: 600;
+  }
+  .at-btn-secondary:hover {
+    background: var(--at-card-alt);
+  }
+  .at-btn:disabled {
+    cursor: not-allowed;
+    opacity: 1;
+    background: var(--at-bg);
+    color: #c9c4b6;
+    border-color: var(--at-hairline);
+    box-shadow: none;
+  }
+
+  /* Status pills (clear / flag / warn) */
+  .at-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--at-font-ui);
+    font-size: 0.74rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--at-radius-pill);
+    white-space: nowrap;
+  }
+  .at-pill .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .at-pill.clear {
+    background: var(--at-clear-wash);
+    color: var(--at-clear);
+  }
+  .at-pill.flag {
+    background: var(--at-flag-wash);
+    color: var(--at-flag);
+  }
+  .at-pill.warn {
+    background: var(--at-warn-wash);
+    color: var(--at-gold-deep);
+  }
+
+  /* Mono reference numbers, report preview, audit hashes */
+  .at-mono {
+    font-family: var(--at-font-mono);
+  }
+}

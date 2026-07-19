@@ -1,0 +1,118 @@
+/* ============================================================
+   AurumTrace — Design Tokens
+   Upload alongside brand.md as system context for Claude Design.
+   Two surface contexts:
+     • Brand chrome (dark)  → sign-in, sidebar, brand surfaces
+     • Product surfaces (light) → the working app (default)
+   ============================================================ */
+
+:root {
+  /* ---- Brand chrome (dark) ---- */
+  --at-ink:            #16181D;  /* deepest brand background        */
+  --at-ink-panel:      #23262F;  /* dark panels / sidebar           */
+  --at-ink-hairline:   #31353F;  /* borders on dark                 */
+  --at-on-ink:         #E7E9ED;  /* primary text on dark            */
+  --at-on-ink-muted:   #AFB3BC;  /* secondary text on dark          */
+
+  /* ---- Product surfaces (light) — default app ---- */
+  --at-bg:             #F6F3EC;  /* app background (warm off-white)  */
+  --at-card:           #FFFFFF;  /* primary card                     */
+  --at-card-alt:       #FBFAF6;  /* secondary / alt-row card         */
+  --at-hairline:       #E7E2D6;  /* borders on light                 */
+  --at-text:           #23262F;  /* primary text                     */
+  --at-text-muted:     #6E727C;  /* secondary text                   */
+  --at-text-faint:     #9498A2;  /* tertiary / placeholder           */
+
+  /* ---- Accent (gold) — use sparingly ---- */
+  --at-gold:           #C9A24B;  /* primary accent                   */
+  --at-gold-light:     #E3CB8B;  /* highlights / gradient top        */
+  --at-gold-deep:      #B5872F;  /* gold text on light (AA-safe)     */
+  --at-gold-wash:      #F3ECDA;  /* subtle gold fill / callout bg    */
+  --at-gold-gradient:  linear-gradient(145deg, #E3CB8B, #C9A24B);
+
+  /* ---- Semantic status ---- */
+  --at-clear:          #3B7A5E;  /* success / cleared                */
+  --at-clear-wash:     rgba(59,122,94,.14);
+  --at-flag:           #9B3B2E;  /* risk / reportable / alert        */
+  --at-flag-wash:      rgba(155,59,46,.13);
+  --at-warn:           #C9A24B;  /* warning / attention              */
+  --at-warn-wash:      rgba(201,162,75,.18);
+
+  /* ---- Typography ---- */
+  --at-font-display: "Fraunces", Georgia, "Times New Roman", serif; /* headings, wordmark, big numbers */
+  --at-font-ui:      "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; /* UI + body */
+  --at-font-mono:    ui-monospace, "SF Mono", Menlo, Consolas, monospace; /* refs, report, audit log */
+
+  /* type scale (rem) */
+  --at-fs-display: 3.0rem;   /* wordmark / hero        */
+  --at-fs-h1:      1.75rem;  /* page title             */
+  --at-fs-h2:      1.30rem;  /* section / stage name   */
+  --at-fs-h3:      1.06rem;  /* card title             */
+  --at-fs-body:    0.95rem;  /* body / controls        */
+  --at-fs-small:   0.81rem;  /* secondary              */
+  --at-fs-label:   0.66rem;  /* uppercase field labels */
+
+  --at-weight-reg: 400;
+  --at-weight-med: 500;
+  --at-weight-semi:600;
+  --at-weight-bold:700;
+  --at-tracking-label: 0.12em; /* letter-spacing for uppercase labels */
+  --at-leading-body: 1.5;
+
+  /* ---- Shape ---- */
+  --at-radius-sm:  8px;
+  --at-radius:     12px;   /* default card/input     */
+  --at-radius-lg:  14px;
+  --at-radius-pill:999px;
+  --at-border:     1px solid var(--at-hairline);
+  --at-border-dark:1px solid var(--at-ink-hairline);
+
+  /* ---- Spacing scale (4px base) ---- */
+  --at-space-1: 4px;
+  --at-space-2: 8px;
+  --at-space-3: 12px;
+  --at-space-4: 16px;
+  --at-space-5: 24px;
+  --at-space-6: 32px;
+  --at-space-7: 48px;
+
+  /* ---- Elevation (soft, never harsh) ---- */
+  --at-shadow-sm: 0 1px 3px rgba(22,24,29,.08);
+  --at-shadow:    0 8px 24px -12px rgba(22,24,29,.25);
+  --at-shadow-lg: 0 18px 40px -24px rgba(22,24,29,.55);
+
+  /* ---- Focus ring (accessibility) ---- */
+  --at-focus: 0 0 0 2px var(--at-bg), 0 0 0 4px var(--at-gold);
+
+  /* ---- Motion ---- */
+  --at-ease: cubic-bezier(.4, 0, .2, 1);
+  --at-dur:  .18s;
+}
+
+/* ------------------------------------------------------------
+   Optional helper classes — illustrate intended usage.
+   ------------------------------------------------------------ */
+
+/* Wordmark: Aurum (ink/white) + Trace (gold) */
+.at-wordmark { font-family: var(--at-font-display); font-weight: 700; letter-spacing: .3px; }
+.at-wordmark .trace { color: var(--at-gold); }
+
+/* Status pills */
+.at-pill { display:inline-flex; align-items:center; gap:6px;
+  font-family:var(--at-font-ui); font-size:var(--at-fs-small); font-weight:700;
+  padding:5px 11px; border-radius:var(--at-radius-pill); }
+.at-pill.clear { background:var(--at-clear-wash); color:var(--at-clear); }
+.at-pill.flag  { background:var(--at-flag-wash);  color:var(--at-flag);  }
+.at-pill.warn  { background:var(--at-warn-wash);  color:var(--at-gold-deep); }
+
+/* Primary button */
+.at-btn-primary { font-family:var(--at-font-ui); font-weight:600;
+  background:var(--at-gold-gradient); color:#1b1500;
+  border:none; border-radius:var(--at-radius-sm); padding:10px 16px; cursor:pointer; }
+
+/* Uppercase field label */
+.at-label { font-size:var(--at-fs-label); letter-spacing:var(--at-tracking-label);
+  text-transform:uppercase; color:var(--at-text-faint); font-weight:600; }
+
+/* Bilingual / RTL: flip with [dir="rtl"] on a wrapper. Avoid hard-coded left/right. */
+[dir="rtl"] { direction: rtl; text-align: right; }

@@ -1,0 +1,120 @@
+{
+  "signin": {
+    "tagline": "Compliance console · DPMS / goAML",
+    "workEmail": "Work email",
+    "password": "Password",
+    "continue": "Continue",
+    "protected": "Protected by two-factor verification",
+    "mfaTitle": "Two-factor verification",
+    "mfaSubtitle": "Enter the 6-digit code sent to •••• 7782",
+    "verify": "Verify & sign in",
+    "back": "← Back"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "newCase": "New case",
+    "customers": "Customers",
+    "reports": "Reports",
+    "audit": "Audit",
+    "settings": "Settings",
+    "statusLabel": "Status",
+    "goamlActive": "goAML link active"
+  },
+  "topbar": {
+    "role": "Compliance officer",
+    "signOut": "Sign out"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "newCase": "New case",
+    "state": {
+      "data": "Data",
+      "empty": "Empty",
+      "loading": "Loading",
+      "error": "Error"
+    },
+    "kpi": {
+      "casesToday": "Cases today",
+      "casesTodaySub": "2 awaiting intake",
+      "reportsPending": "Reports pending review",
+      "reportsPendingSub": "File before end of day",
+      "flaggedCustomers": "Flagged customers",
+      "flaggedCustomersSub": "Risk = high",
+      "filingsMonth": "Filings this month",
+      "filingsMonthSub": "+4 vs. last month"
+    },
+    "recent": {
+      "title": "Recent cases",
+      "viewAll": "View all →",
+      "col": {
+        "reference": "Reference",
+        "customer": "Customer",
+        "item": "Item",
+        "valueAed": "Value AED",
+        "stage": "Stage",
+        "status": "Status",
+        "date": "Date"
+      },
+      "empty": {
+        "title": "No cases yet",
+        "body": "Start your first compliance case. Scan an Emirates ID at the counter to begin intake.",
+        "cta": "New case"
+      },
+      "error": {
+        "title": "Couldn't load cases",
+        "body": "The goAML connection timed out. Your data is safe — nothing was filed.",
+        "retry": "Retry"
+      }
+    },
+    "pipeline": {
+      "title": "Pipeline",
+      "subtitle": "Six-stage case flow",
+      "stage": {
+        "intake": "Intake",
+        "kyc": "KYC / CDD",
+        "threshold": "Threshold",
+        "sourcing": "Responsible sourcing",
+        "report": "goAML report",
+        "audit": "Audit trail"
+      }
+    }
+  },
+  "status": {
+    "reportable": "Reportable",
+    "inReview": "In review",
+    "cleared": "Cleared"
+  },
+  "customers": {
+    "eyebrow": "Directory",
+    "title": "Customers",
+    "search": "Search name or ID…",
+    "col": {
+      "customer": "Customer",
+      "emiratesId": "Emirates ID",
+      "type": "Type",
+      "cases": "Cases",
+      "risk": "Risk",
+      "lastSeen": "Last seen"
+    },
+    "type": { "resident": "Resident", "nonResident": "Non-resident" },
+    "risk": { "low": "Low", "medium": "Medium", "high": "High", "unrated": "Unrated" },
+    "empty": "No customers match your search."
+  },
+  "reports": {
+    "eyebrow": "goAML filings",
+    "title": "Reports",
+    "col": {
+      "reference": "Reference",
+      "type": "Type",
+      "customer": "Customer",
+      "valueAed": "Value AED",
+      "status": "Status"
+    },
+    "status": { "draft": "Draft", "pendingReview": "Pending review", "filed": "Filed" },
+    "empty": "No reports yet."
+  },
+  "comingSoon": {
+    "eyebrow": "Planned",
+    "body": "This screen is part of a later step in the Phase 1 build plan. The app shell, navigation and brand system are in place and ready for it."
+  }
+}

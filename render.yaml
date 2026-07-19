@@ -1,0 +1,38 @@
+# Render blueprint for the AurumTrace API (NestJS).
+# Free web service — note: it SLEEPS after ~15 min idle; the first request after
+# idle takes ~50s to wake. A keep-alive ping on /health reduces this.
+#
+# Deploy: push this repo to GitHub, then in Render → "New +" → "Blueprint" and
+# point it at the repo. Set the secret env vars marked `sync: false` in the
+# dashboard (they are NOT stored in git). See docs/DEPLOY-DEMO.md.
+services:
+  - type: web
+    name: aurumtrace-api
+    runtime: node
+    plan: free
+    region: singapore # closest free region to the UAE (Render has no ME region)
+    branch: main
+    buildCommand: >-
+      corepack enable &&
+      corepack prepare pnpm@9.15.0 --activate &&
+      pnpm install --frozen-lockfile &&
+      pnpm --filter @aurumtrace/shared build &&
+      pnpm --filter @aurumtrace/api build
+    startCommand: node apps/api/dist/main.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DEMO_MODE
+        value: "true"
+      - key: DEMO_TENANT_ID
+        value: 00000000-0000-0000-0000-0000000000a1 # matches seed.sql demo tenant
+      - key: DB_APP_ROLE
+        value: authenticated
+      # --- secrets: set these in the Render dashboard (never in git) ---
+      - key: DATABASE_URL # Supabase → Connect → "Session pooler" URI
+        sync: false
+      - key: SUPABASE_JWT_SECRET # Supabase → Settings → API → JWT secret
+        sync: false
+      - key: DOCUMENTS_ENC_KEY # 32-byte key, e.g. `openssl rand -base64 32`
+        sync: false

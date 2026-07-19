@@ -1,0 +1,120 @@
+{
+  "signin": {
+    "tagline": "وحدة الامتثال · DPMS / goAML",
+    "workEmail": "البريد الإلكتروني للعمل",
+    "password": "كلمة المرور",
+    "continue": "متابعة",
+    "protected": "محمي بالتحقق بخطوتين",
+    "mfaTitle": "التحقق بخطوتين",
+    "mfaSubtitle": "أدخل الرمز المكوّن من ٦ أرقام المُرسل إلى •••• 7782",
+    "verify": "تحقق وتسجيل الدخول",
+    "back": "→ رجوع"
+  },
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "newCase": "قضية جديدة",
+    "customers": "العملاء",
+    "reports": "التقارير",
+    "audit": "سجل التدقيق",
+    "settings": "الإعدادات",
+    "statusLabel": "الحالة",
+    "goamlActive": "اتصال goAML نشط"
+  },
+  "topbar": {
+    "role": "مسؤول الامتثال",
+    "signOut": "تسجيل الخروج"
+  },
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "newCase": "قضية جديدة",
+    "state": {
+      "data": "بيانات",
+      "empty": "فارغ",
+      "loading": "تحميل",
+      "error": "خطأ"
+    },
+    "kpi": {
+      "casesToday": "حالات اليوم",
+      "casesTodaySub": "حالتان بانتظار الاستقبال",
+      "reportsPending": "تقارير بانتظار المراجعة",
+      "reportsPendingSub": "تُرفع قبل نهاية اليوم",
+      "flaggedCustomers": "عملاء مُعلَّمون",
+      "flaggedCustomersSub": "المخاطر = مرتفعة",
+      "filingsMonth": "إيداعات هذا الشهر",
+      "filingsMonthSub": "+٤ عن الشهر الماضي"
+    },
+    "recent": {
+      "title": "أحدث القضايا",
+      "viewAll": "عرض الكل ←",
+      "col": {
+        "reference": "المرجع",
+        "customer": "العميل",
+        "item": "الصنف",
+        "valueAed": "القيمة (درهم)",
+        "stage": "المرحلة",
+        "status": "الحالة",
+        "date": "التاريخ"
+      },
+      "empty": {
+        "title": "لا توجد قضايا بعد",
+        "body": "ابدأ أول قضية امتثال. امسح الهوية الإماراتية على المنضدة لبدء الاستقبال.",
+        "cta": "قضية جديدة"
+      },
+      "error": {
+        "title": "تعذّر تحميل القضايا",
+        "body": "انتهت مهلة اتصال goAML. بياناتك آمنة — لم يتم إرسال أي شيء.",
+        "retry": "إعادة المحاولة"
+      }
+    },
+    "pipeline": {
+      "title": "المسار",
+      "subtitle": "مراحل سير القضية الست",
+      "stage": {
+        "intake": "الاستقبال",
+        "kyc": "اعرف عميلك",
+        "threshold": "الحد الأدنى للإبلاغ",
+        "sourcing": "المصدر المسؤول",
+        "report": "تقرير goAML",
+        "audit": "سجل التدقيق"
+      }
+    }
+  },
+  "status": {
+    "reportable": "قابل للإبلاغ",
+    "inReview": "قيد المراجعة",
+    "cleared": "مكتمل"
+  },
+  "customers": {
+    "eyebrow": "الدليل",
+    "title": "العملاء",
+    "search": "ابحث بالاسم أو الهوية…",
+    "col": {
+      "customer": "العميل",
+      "emiratesId": "الهوية الإماراتية",
+      "type": "النوع",
+      "cases": "القضايا",
+      "risk": "المخاطر",
+      "lastSeen": "آخر ظهور"
+    },
+    "type": { "resident": "مقيم", "nonResident": "غير مقيم" },
+    "risk": { "low": "منخفض", "medium": "متوسط", "high": "مرتفع", "unrated": "غير مُقيَّم" },
+    "empty": "لا يوجد عملاء مطابقون لبحثك."
+  },
+  "reports": {
+    "eyebrow": "إيداعات goAML",
+    "title": "التقارير",
+    "col": {
+      "reference": "المرجع",
+      "type": "النوع",
+      "customer": "العميل",
+      "valueAed": "القيمة (درهم)",
+      "status": "الحالة"
+    },
+    "status": { "draft": "مسودة", "pendingReview": "قيد المراجعة", "filed": "مُودَع" },
+    "empty": "لا توجد تقارير بعد."
+  },
+  "comingSoon": {
+    "eyebrow": "مُخطَّط له",
+    "body": "هذه الشاشة جزء من مرحلة لاحقة في خطة البناء. هيكل التطبيق والتنقل ونظام العلامة التجارية جاهزة لها."
+  }
+}

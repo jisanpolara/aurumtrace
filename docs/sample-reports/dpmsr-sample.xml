@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PROVISIONAL goAML DPMSR draft — structure pending advisor confirmation (docs/goaml-mapping.md §3). Not for filing as-is. -->
+<report>
+  <report_type>DPMSR</report_type>
+  <reference>AT-2026-000148</reference>
+  <reporting_entity>
+    <legal_name>Al Noor Gold Trading LLC</legal_name>
+    <licence>DMCC-7741</licence>
+    <goaml_org_id>UAE-FIU-44821</goaml_org_id>
+  </reporting_entity>
+  <transaction>
+    <date>2026-06-22</date>
+    <item type="bar" purity_karat="24" weight_grams="250"/>
+    <value_aed>61400.00</value_aed>
+    <aggregate_aed>91400.00</aggregate_aed>
+    <reportable>true</reportable>
+  </transaction>
+  <party role="conductor">
+    <name>Rashid Al Maktoum</name>
+    <id_number>784-1987-3456712-9</id_number>
+    <risk_band>medium</risk_band>
+  </party>
+</report>

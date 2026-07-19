@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#16181D">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#16181D"/>
+    <circle cx="600" cy="360" r="120" fill="none" stroke="#C9A24B" stroke-width="10"/>
+    <path d="M548 360l38 38 70-78" fill="none" stroke="#C9A24B" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="600" y="560" text-anchor="middle" font-family="Georgia,serif" font-size="72" font-weight="600">
+      <tspan fill="#F6F3EC">Aurum</tspan><tspan fill="#C9A24B">Trace</tspan>
+    </text>
+  </svg>
+</template>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    ::-webkit-scrollbar{width:10px;height:10px;}
+    ::-webkit-scrollbar-thumb{background:rgba(110,114,124,.35);border-radius:999px;}
+    @keyframes at-spin{to{transform:rotate(360deg);}}
+    @keyframes at-stamp{0%{transform:scale(.4) rotate(-12deg);opacity:0;}60%{transform:scale(1.12) rotate(3deg);opacity:1;}100%{transform:scale(1) rotate(0);opacity:1;}}
+    @keyframes at-rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes at-pulse{0%,100%{opacity:1;}50%{opacity:.45;}}
+  </style>
+</helmet>
+
+<div dir="{{ dirAttr }}" style="font-family:'Inter',system-ui,sans-serif;height:100vh;width:100%;overflow:hidden;color:#23262F;-webkit-font-smoothing:antialiased;">
+
+  <!-- ============ SIGN IN (dark) ============ -->
+  <sc-if value="{{ notSignedIn }}" hint-placeholder-val="{{ true }}">
+    <div style="height:100vh;width:100%;display:flex;align-items:center;justify-content:center;background:radial-gradient(120% 90% at 50% 0%, #21242E 0%, #16181D 60%);position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(201,162,75,.16),transparent 65%);pointer-events:none;"></div>
+      <div style="position:relative;width:420px;max-width:92vw;background:#23262F;border:1px solid #31353F;border-radius:16px;padding:38px 36px;box-shadow:0 30px 80px -30px rgba(0,0,0,.7);">
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:6px;">
+          <div style="width:34px;height:34px;border-radius:9px;background:linear-gradient(145deg,#E3CB8B,#C9A24B);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px -4px rgba(201,162,75,.6);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3 L20 8 L17 20 L7 20 L4 8 Z" fill="#16181D" opacity=".85"/><path d="M9 12.5 l2 2 l4-4.5" stroke="#E3CB8B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="font-family:'Fraunces',serif;font-weight:700;font-size:1.5rem;letter-spacing:.3px;color:#E7E9ED;">Aurum<span style="color:#C9A24B;">Trace</span></div>
+        </div>
+        <div style="font-size:.8rem;color:#AFB3BC;margin-bottom:28px;letter-spacing:.02em;">Compliance console · DPMS / goAML</div>
+
+        <sc-if value="{{ signinStep1 }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <label style="display:block;">
+              <div style="font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#AFB3BC;font-weight:600;margin-bottom:7px;">Work email</div>
+              <input value="yousef@alnoorgold.ae" style="width:100%;background:#16181D;border:1px solid #31353F;border-radius:10px;padding:12px 14px;color:#E7E9ED;font-family:inherit;font-size:.92rem;outline:none;" style-focus="width:100%;background:#16181D;border:1px solid #C9A24B;border-radius:10px;padding:12px 14px;color:#E7E9ED;font-family:inherit;font-size:.92rem;outline:none;box-shadow:0 0 0 3px rgba(201,162,75,.22);"/>
+            </label>
+            <label style="display:block;">
+              <div style="font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#AFB3BC;font-weight:600;margin-bottom:7px;">Password</div>
+              <input type="password" value="aurumtrace" style="width:100%;background:#16181D;border:1px solid #31353F;border-radius:10px;padding:12px 14px;color:#E7E9ED;font-family:inherit;font-size:.92rem;outline:none;" style-focus="width:100%;background:#16181D;border:1px solid #C9A24B;border-radius:10px;padding:12px 14px;color:#E7E9ED;font-family:inherit;font-size:.92rem;outline:none;box-shadow:0 0 0 3px rgba(201,162,75,.22);"/>
+            </label>
+            <button onClick="{{ toMfa }}" style="margin-top:6px;width:100%;background:linear-gradient(145deg,#E3CB8B,#C9A24B);color:#1b1500;border:none;border-radius:10px;padding:13px;font-family:inherit;font-weight:700;font-size:.92rem;cursor:pointer;letter-spacing:.01em;">Continue</button>
+            <div style="text-align:center;font-size:.78rem;color:#6E727C;margin-top:2px;">Protected by two-factor verification</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ signinStep2 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:18px;">
+            <div>
+              <div style="font-family:'Fraunces',serif;font-size:1.15rem;color:#E7E9ED;font-weight:600;">Two-factor verification</div>
+              <div style="font-size:.85rem;color:#AFB3BC;margin-top:4px;">Enter the 6-digit code sent to •••• 7782</div>
+            </div>
+            <div style="display:flex;gap:9px;">
+              <div style="flex:1;aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:#16181D;border:1px solid #C9A24B;border-radius:10px;font-family:'IBM Plex Mono',monospace;font-size:1.4rem;color:#E7E9ED;box-shadow:0 0 0 3px rgba(201,162,75,.18);">4</div>
+              <div style="flex:1;aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:#16181D;border:1px solid #31353F;border-radius:10px;font-family:'IBM Plex Mono',monospace;font-size:1.4rem;color:#E7E9ED;">9</div>
+              <div style="flex:1;aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:#16181D;border:1px solid #31353F;border-radius:10px;font-family:'IBM Plex Mono',monospace;font-size:1.4rem;color:#E7E9ED;">2</div>
+              <div style="flex:1;aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:#16181D;border:1px solid #31353F;border-radius:10px;font-family:'IBM Plex Mono',monospace;font-size:1.4rem;color:#E7E9ED;">7</div>
+              <div style="flex:1;aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:#16181D;border:1px solid #31353F;border-radius:10px;font-family:'IBM Plex Mono',monospace;font-size:1.4rem;color:#6E727C;">·</div>
+              <div style="flex:1;aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:#16181D;border:1px solid #31353F;border-radius:10px;font-family:'IBM Plex Mono',monospace;font-size:1.4rem;color:#6E727C;">·</div>
+            </div>
+            <button onClick="{{ signIn }}" style="width:100%;background:linear-gradient(145deg,#E3CB8B,#C9A24B);color:#1b1500;border:none;border-radius:10px;padding:13px;font-family:inherit;font-weight:700;font-size:.92rem;cursor:pointer;">Verify &amp; sign in</button>
+            <button onClick="{{ backToSignin }}" style="width:100%;background:transparent;color:#AFB3BC;border:none;font-family:inherit;font-size:.82rem;cursor:pointer;">← Back</button>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ APP SHELL ============ -->
+  <sc-if value="{{ signedIn }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;height:100vh;width:100%;background:#F6F3EC;">
+
+      <!-- SIDEBAR -->
+      <aside style="width:248px;flex:none;background:#23262F;border-inline-end:1px solid #31353F;display:flex;flex-direction:column;padding:20px 16px;">
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 8px 22px;">
+          <div style="width:30px;height:30px;border-radius:8px;background:linear-gradient(145deg,#E3CB8B,#C9A24B);display:flex;align-items:center;justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3 L20 8 L17 20 L7 20 L4 8 Z" fill="#16181D" opacity=".85"/><path d="M9 12.5 l2 2 l4-4.5" stroke="#E3CB8B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="font-family:'Fraunces',serif;font-weight:700;font-size:1.22rem;color:#E7E9ED;">Aurum<span style="color:#C9A24B;">Trace</span></div>
+        </div>
+
+        <nav style="display:flex;flex-direction:column;gap:4px;">
+          <button onClick="{{ goDashboard }}" style="{{ navStyle.dashboard }}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            <span>Dashboard</span>
+          </button>
+          <button onClick="{{ goNewCase }}" style="{{ navStyle.newcase }}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8" stroke-linecap="round"/></svg>
+            <span>New case</span>
+          </button>
+          <button onClick="{{ goCustomers }}" style="{{ navStyle.customers }}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5" stroke-linecap="round"/><path d="M16 6.5a3 3 0 0 1 0 5.6M17.5 19c0-2.2-1-3.8-2.5-4.6" stroke-linecap="round"/></svg>
+            <span>Customers</span>
+          </button>
+          <button onClick="{{ goReports }}" style="{{ navStyle.reports }}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 3h8l4 4v14H6z" stroke-linejoin="round"/><path d="M14 3v4h4M9 13h6M9 16.5h6M9 9.5h2" stroke-linecap="round"/></svg>
+            <span>Reports</span>
+          </button>
+          <button onClick="{{ goAudit }}" style="{{ navStyle.audit }}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3v5c0 4.4-3 8-7 10-4-2-7-5.6-7-10V6z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Audit</span>
+          </button>
+          <button onClick="{{ goSettings }}" style="{{ navStyle.settings }}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" stroke-linecap="round"/></svg>
+            <span>Settings</span>
+          </button>
+        </nav>
+
+        <div style="margin-top:auto;">
+          <button onClick="{{ goKit }}" style="{{ navStyle.kit }}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="13.5" cy="6.5" r="3"/><circle cx="6.5" cy="13.5" r="3"/><rect x="13" y="13" width="6.5" height="6.5" rx="1.5"/></svg>
+            <span>UI kit</span>
+          </button>
+          <div style="margin-top:14px;padding:13px 14px;background:#16181D;border:1px solid #31353F;border-radius:12px;">
+            <div style="font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#6E727C;font-weight:600;">Status</div>
+            <div style="display:flex;align-items:center;gap:7px;margin-top:7px;"><span style="width:7px;height:7px;border-radius:50%;background:#3B7A5E;"></span><span style="font-size:.8rem;color:#AFB3BC;">goAML link active</span></div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN COLUMN -->
+      <div style="flex:1;display:flex;flex-direction:column;min-width:0;">
+
+        <!-- TOP BAR -->
+        <header style="height:64px;flex:none;background:#FFFFFF;border-bottom:1px solid #E7E2D6;display:flex;align-items:center;justify-content:space-between;padding:0 28px;gap:16px;">
+          <div style="display:flex;align-items:center;gap:11px;min-width:0;">
+            <div style="font-family:'Fraunces',serif;font-weight:600;font-size:1.02rem;color:#23262F;white-space:nowrap;">Al Noor Gold Trading LLC</div>
+            <span style="font-size:.66rem;letter-spacing:.1em;font-weight:700;color:#B5872F;background:#F3ECDA;padding:3px 8px;border-radius:999px;">DMCC</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="display:flex;background:#F6F3EC;border:1px solid #E7E2D6;border-radius:999px;padding:3px;">
+              <button onClick="{{ setEN }}" style="{{ langStyle.en }}">EN</button>
+              <button onClick="{{ setAR }}" style="{{ langStyle.ar }}">العربية</button>
+            </div>
+            <button style="position:relative;width:38px;height:38px;border-radius:10px;border:1px solid #E7E2D6;background:#FBFAF6;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#6E727C;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6Z" stroke-linejoin="round"/><path d="M10 19a2 2 0 0 0 4 0" stroke-linecap="round"/></svg>
+              <span style="position:absolute;top:6px;right:7px;width:8px;height:8px;border-radius:50%;background:#9B3B2E;border:1.5px solid #FBFAF6;"></span>
+            </button>
+            <div style="display:flex;align-items:center;gap:10px;padding-inline-start:6px;">
+              <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(145deg,#31353F,#16181D);color:#E3CB8B;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:.85rem;font-family:'Fraunces',serif;">YR</div>
+              <div style="line-height:1.2;">
+                <div style="font-size:.85rem;font-weight:600;color:#23262F;">Yousef R.</div>
+                <div style="font-size:.72rem;color:#6E727C;">Compliance officer</div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- SCROLL CONTENT -->
+        <main style="flex:1;overflow-y:auto;padding:30px 36px 60px;">
+
+          <!-- DASHBOARD -->
+          <sc-if value="{{ isDashboard }}" hint-placeholder-val="{{ true }}">
+            <sc-if value="{{ dashEN }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:24px;">
+                <div>
+                  <div style="font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;">Monday, 22 June 2026</div>
+                  <h1 style="font-family:'Fraunces',serif;font-weight:600;font-size:1.85rem;margin:5px 0 0;color:#23262F;">Dashboard</h1>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <div style="display:flex;background:#FFFFFF;border:1px solid #E7E2D6;border-radius:10px;padding:3px;">
+                    <button onClick="{{ stateNormal }}" style="{{ stateStyle.normal }}">Data</button>
+                    <button onClick="{{ stateEmpty }}" style="{{ stateStyle.empty }}">Empty</button>
+                    <button onClick="{{ stateLoading }}" style="{{ stateStyle.loading }}">Loading</button>
+                    <button onClick="{{ stateError }}" style="{{ stateStyle.error }}">Error</button>
+                  </div>
+                  <button onClick="{{ goNewCase }}" style="display:flex;align-items:center;gap:8px;background:linear-gradient(145deg,#E3CB8B,#C9A24B);color:#1b1500;border:none;border-radius:10px;padding:11px 18px;font-family:inherit;font-weight:700;font-size:.9rem;cursor:pointer;box-shadow:0 6px 16px -8px rgba(201,162,75,.8);">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b1500" stroke-width="2.2"><path d="M12 6v12M6 12h12" stroke-linecap="round"/></svg>New case
+                  </button>
+                </div>
+              </div>
+
+              <!-- KPI ROW -->
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:24px;">
+                <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+                  <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:20px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                    <div style="display:flex;align-items:center;justify-content:space-between;">
+                      <div style="font-size:.72rem;letter-spacing:.04em;color:#6E727C;font-weight:600;">{{ k.label }}</div>
+                      <span style="width:9px;height:9px;border-radius:50%;background:{{ k.dot }};"></span>
+                    </div>
+                    <div style="font-family:'Fraunces',serif;font-weight:600;font-size:2.4rem;line-height:1;margin:14px 0 8px;color:#23262F;">{{ k.value }}</div>
+                    <div style="font-size:.78rem;color:{{ k.subColor }};font-weight:500;">{{ k.sub }}</div>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1.9fr 1fr;gap:18px;align-items:start;">
+                <!-- CASE TABLE -->
+                <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #E7E2D6;">
+                    <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:1.1rem;margin:0;color:#23262F;">Recent cases</h2>
+                    <span style="font-size:.78rem;color:#9498A2;cursor:pointer;">View all →</span>
+                  </div>
+
+                  <sc-if value="{{ stIsNormal }}" hint-placeholder-val="{{ true }}">
+                    <table style="width:100%;border-collapse:collapse;font-size:.85rem;">
+                      <thead>
+                        <tr style="background:#16181D;">
+                          <th style="text-align:start;padding:10px 20px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#AFB3BC;font-weight:600;">Reference</th>
+                          <th style="text-align:start;padding:10px 14px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#AFB3BC;font-weight:600;">Customer</th>
+                          <th style="text-align:start;padding:10px 14px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#AFB3BC;font-weight:600;">Item</th>
+                          <th style="text-align:end;padding:10px 14px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#AFB3BC;font-weight:600;">Value AED</th>
+                          <th style="text-align:start;padding:10px 14px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#AFB3BC;font-weight:600;">Stage</th>
+                          <th style="text-align:start;padding:10px 14px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#AFB3BC;font-weight:600;">Status</th>
+                          <th style="text-align:end;padding:10px 20px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#AFB3BC;font-weight:600;">Date</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <sc-for list="{{ cases }}" as="c" hint-placeholder-count="6">
+                          <tr onClick="{{ openCase }}" style="background:{{ c.rowBg }};border-bottom:1px solid #E7E2D6;cursor:pointer;">
+                            <td style="padding:13px 20px;font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#6E727C;">{{ c.id }}</td>
+                            <td style="padding:13px 14px;font-weight:600;color:#23262F;">{{ c.customer }}</td>
+                            <td style="padding:13px 14px;color:#6E727C;">{{ c.item }}</td>
+                            <td style="padding:13px 14px;text-align:end;font-family:'IBM Plex Mono',monospace;font-weight:500;color:#23262F;">{{ c.value }}</td>
+                            <td style="padding:13px 14px;color:#6E727C;font-size:.8rem;">{{ c.stage }}</td>
+                            <td style="padding:13px 14px;"><span style="display:inline-flex;align-items:center;gap:5px;font-size:.74rem;font-weight:700;padding:4px 10px;border-radius:999px;background:{{ c.pillBg }};color:{{ c.pillColor }};">{{ c.statusLabel }}</span></td>
+                            <td style="padding:13px 20px;text-align:end;color:#9498A2;font-size:.8rem;">{{ c.date }}</td>
+                          </tr>
+                        </sc-for>
+                      </tbody>
+                    </table>
+                  </sc-if>
+
+                  <sc-if value="{{ stIsLoading }}" hint-placeholder-val="{{ false }}">
+                    <div style="padding:14px 20px;">
+                      <sc-for list="{{ skeletons }}" as="s" hint-placeholder-count="6">
+                        <div style="display:flex;align-items:center;gap:16px;padding:11px 0;border-bottom:1px solid #F1ECE0;">
+                          <div style="height:12px;width:90px;border-radius:6px;background:#EEE9DC;animation:at-pulse 1.3s var(--e,ease) infinite;"></div>
+                          <div style="height:12px;width:120px;border-radius:6px;background:#EEE9DC;animation:at-pulse 1.3s ease infinite .15s;"></div>
+                          <div style="height:12px;flex:1;border-radius:6px;background:#F3EEE2;animation:at-pulse 1.3s ease infinite .3s;"></div>
+                          <div style="height:20px;width:70px;border-radius:999px;background:#EEE9DC;animation:at-pulse 1.3s ease infinite .45s;"></div>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+
+                  <sc-if value="{{ stIsEmpty }}" hint-placeholder-val="{{ false }}">
+                    <div style="padding:60px 30px;text-align:center;">
+                      <div style="width:62px;height:62px;border-radius:16px;background:#F6F3EC;border:1px solid #E7E2D6;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A24B" stroke-width="1.5"><path d="M12 3 L20 8 L17 20 L7 20 L4 8 Z" stroke-linejoin="round"/></svg>
+                      </div>
+                      <div style="font-family:'Fraunces',serif;font-size:1.15rem;color:#23262F;font-weight:600;">No cases yet</div>
+                      <div style="font-size:.85rem;color:#6E727C;margin:6px auto 20px;max-width:300px;">Start your first compliance case. Scan an Emirates ID at the counter to begin intake.</div>
+                      <button onClick="{{ goNewCase }}" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(145deg,#E3CB8B,#C9A24B);color:#1b1500;border:none;border-radius:10px;padding:11px 18px;font-family:inherit;font-weight:700;font-size:.9rem;cursor:pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b1500" stroke-width="2.2"><path d="M12 6v12M6 12h12" stroke-linecap="round"/></svg>New case</button>
+                    </div>
+                  </sc-if>
+
+                  <sc-if value="{{ stIsError }}" hint-placeholder-val="{{ false }}">
+                    <div style="padding:54px 30px;text-align:center;">
+                      <div style="width:62px;height:62px;border-radius:16px;background:rgba(155,59,46,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9B3B2E" stroke-width="1.7"><path d="M12 8v5" stroke-linecap="round"/><circle cx="12" cy="16.5" r=".4" fill="#9B3B2E" stroke="#9B3B2E"/><path d="M12 3l9 16H3z" stroke-linejoin="round"/></svg>
+                      </div>
+                      <div style="font-family:'Fraunces',serif;font-size:1.15rem;color:#23262F;font-weight:600;">Couldn't load cases</div>
+                      <div style="font-size:.85rem;color:#6E727C;margin:6px auto 20px;max-width:320px;">The goAML connection timed out. Your data is safe — nothing was filed.</div>
+                      <button onClick="{{ stateNormal }}" style="display:inline-flex;align-items:center;gap:8px;background:#FFFFFF;color:#23262F;border:1px solid #E7E2D6;border-radius:10px;padding:10px 18px;font-family:inherit;font-weight:600;font-size:.88rem;cursor:pointer;">Retry</button>
+                    </div>
+                  </sc-if>
+                </div>
+
+                <!-- PIPELINE OVERVIEW -->
+                <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:20px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                  <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:1.1rem;margin:0 0 4px;color:#23262F;">Pipeline</h2>
+                  <div style="font-size:.78rem;color:#9498A2;margin-bottom:18px;">Six-stage case flow</div>
+                  <div style="display:flex;flex-direction:column;gap:3px;">
+                    <sc-for list="{{ pipeline }}" as="p" hint-placeholder-count="6">
+                      <div style="display:flex;align-items:center;gap:12px;padding:10px 10px;border-radius:10px;background:{{ p.bg }};">
+                        <div style="width:26px;height:26px;flex:none;border-radius:8px;background:{{ p.nodeBg }};color:{{ p.nodeColor }};display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;font-size:.82rem;">{{ p.n }}</div>
+                        <div style="flex:1;min-width:0;font-size:.85rem;font-weight:500;color:#23262F;">{{ p.name }}</div>
+                        <div style="font-family:'IBM Plex Mono',monospace;font-size:.82rem;font-weight:600;color:{{ p.countColor }};">{{ p.count }}</div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- AR DASHBOARD -->
+            <sc-if value="{{ dashAR }}" hint-placeholder-val="{{ false }}">
+              <div style="font-family:'Inter','Segoe UI',Tahoma,sans-serif;">
+                <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:24px;">
+                  <div>
+                    <div style="font-size:.72rem;color:#9498A2;font-weight:600;">الإثنين، ٢٢ يونيو ٢٠٢٦</div>
+                    <h1 style="font-family:'Fraunces',serif;font-weight:600;font-size:1.85rem;margin:5px 0 0;color:#23262F;">لوحة التحكم</h1>
+                  </div>
+                  <button onClick="{{ goNewCase }}" style="display:flex;align-items:center;gap:8px;background:linear-gradient(145deg,#E3CB8B,#C9A24B);color:#1b1500;border:none;border-radius:10px;padding:11px 18px;font-family:inherit;font-weight:700;font-size:.9rem;cursor:pointer;box-shadow:0 6px 16px -8px rgba(201,162,75,.8);">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b1500" stroke-width="2.2"><path d="M12 6v12M6 12h12" stroke-linecap="round"/></svg>قضية جديدة
+                  </button>
+                </div>
+
+                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:24px;">
+                  <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:20px;"><div style="display:flex;align-items:center;justify-content:space-between;"><div style="font-size:.78rem;color:#6E727C;font-weight:600;">حالات اليوم</div><span style="width:9px;height:9px;border-radius:50%;background:#6E727C;"></span></div><div style="font-family:'Fraunces',serif;font-weight:600;font-size:2.4rem;line-height:1;margin:14px 0 8px;color:#23262F;">٧</div><div style="font-size:.8rem;color:#6E727C;font-weight:500;">حالتان بانتظار الاستقبال</div></div>
+                  <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:20px;"><div style="display:flex;align-items:center;justify-content:space-between;"><div style="font-size:.78rem;color:#6E727C;font-weight:600;">تقارير بانتظار المراجعة</div><span style="width:9px;height:9px;border-radius:50%;background:#C9A24B;"></span></div><div style="font-family:'Fraunces',serif;font-weight:600;font-size:2.4rem;line-height:1;margin:14px 0 8px;color:#23262F;">٣</div><div style="font-size:.8rem;color:#B5872F;font-weight:500;">تُرفع قبل نهاية اليوم</div></div>
+                  <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:20px;"><div style="display:flex;align-items:center;justify-content:space-between;"><div style="font-size:.78rem;color:#6E727C;font-weight:600;">عملاء مُعلَّمون</div><span style="width:9px;height:9px;border-radius:50%;background:#9B3B2E;"></span></div><div style="font-family:'Fraunces',serif;font-weight:600;font-size:2.4rem;line-height:1;margin:14px 0 8px;color:#23262F;">٢</div><div style="font-size:.8rem;color:#9B3B2E;font-weight:500;">المخاطر = مرتفعة</div></div>
+                  <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:20px;"><div style="display:flex;align-items:center;justify-content:space-between;"><div style="font-size:.78rem;color:#6E727C;font-weight:600;">إيداعات هذا الشهر</div><span style="width:9px;height:9px;border-radius:50%;background:#3B7A5E;"></span></div><div style="font-family:'Fraunces',serif;font-weight:600;font-size:2.4rem;line-height:1;margin:14px 0 8px;color:#23262F;">١٨</div><div style="font-size:.8rem;color:#3B7A5E;font-weight:500;">+٤ عن الشهر الماضي</div></div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1.9fr 1fr;gap:18px;align-items:start;">
+                  <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;overflow:hidden;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #E7E2D6;"><h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:1.1rem;margin:0;color:#23262F;">أحدث القضايا</h2><span style="font-size:.78rem;color:#9498A2;">عرض الكل ←</span></div>
+                    <table style="width:100%;border-collapse:collapse;font-size:.85rem;">
+                      <thead><tr style="background:#16181D;">
+                        <th style="text-align:start;padding:10px 20px;font-size:.7rem;color:#AFB3BC;font-weight:600;">المرجع</th>
+                        <th style="text-align:start;padding:10px 14px;font-size:.7rem;color:#AFB3BC;font-weight:600;">العميل</th>
+                        <th style="text-align:start;padding:10px 14px;font-size:.7rem;color:#AFB3BC;font-weight:600;">الصنف</th>
+                        <th style="text-align:start;padding:10px 14px;font-size:.7rem;color:#AFB3BC;font-weight:600;">القيمة (درهم)</th>
+                        <th style="text-align:start;padding:10px 14px;font-size:.7rem;color:#AFB3BC;font-weight:600;">الحالة</th>
+                      </tr></thead>
+                      <tbody>
+                        <tr style="background:#FFFFFF;border-bottom:1px solid #E7E2D6;"><td style="padding:13px 20px;font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#6E727C;direction:ltr;text-align:start;">AT-2026-000148</td><td style="padding:13px 14px;font-weight:600;color:#23262F;">راشد أ.</td><td style="padding:13px 14px;color:#6E727C;">سبيكة ٢٢ · ٢٥٠غ</td><td style="padding:13px 14px;font-family:'IBM Plex Mono',monospace;color:#23262F;direction:ltr;text-align:start;">61,400</td><td style="padding:13px 14px;"><span style="font-size:.74rem;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(155,59,46,.13);color:#9B3B2E;">قابل للإبلاغ</span></td></tr>
+                        <tr style="background:#FBFAF6;border-bottom:1px solid #E7E2D6;"><td style="padding:13px 20px;font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#6E727C;direction:ltr;text-align:start;">AT-2026-000147</td><td style="padding:13px 14px;font-weight:600;color:#23262F;">مريم س.</td><td style="padding:13px 14px;color:#6E727C;">عملات ٢٤ · ١٢٠غ</td><td style="padding:13px 14px;font-family:'IBM Plex Mono',monospace;color:#23262F;direction:ltr;text-align:start;">29,800</td><td style="padding:13px 14px;"><span style="font-size:.74rem;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(201,162,75,.18);color:#B5872F;">قيد المراجعة</span></td></tr>
+                        <tr style="background:#FFFFFF;border-bottom:1px solid #E7E2D6;"><td style="padding:13px 20px;font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#6E727C;direction:ltr;text-align:start;">AT-2026-000146</td><td style="padding:13px 14px;font-weight:600;color:#23262F;">عمران ك.</td><td style="padding:13px 14px;color:#6E727C;">سبائك ٢١ · ٥٠٠غ</td><td style="padding:13px 14px;font-family:'IBM Plex Mono',monospace;color:#23262F;direction:ltr;text-align:start;">118,650</td><td style="padding:13px 14px;"><span style="font-size:.74rem;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(155,59,46,.13);color:#9B3B2E;">قابل للإبلاغ</span></td></tr>
+                        <tr style="background:#FBFAF6;"><td style="padding:13px 20px;font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#6E727C;direction:ltr;text-align:start;">AT-2026-000145</td><td style="padding:13px 14px;font-weight:600;color:#23262F;">ليلى ح.</td><td style="padding:13px 14px;color:#6E727C;">مجوهرات ١٨ · ٤٠غ</td><td style="padding:13px 14px;font-family:'IBM Plex Mono',monospace;color:#23262F;direction:ltr;text-align:start;">7,920</td><td style="padding:13px 14px;"><span style="font-size:.74rem;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(59,122,94,.14);color:#3B7A5E;">مكتمل</span></td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:20px;">
+                    <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:1.1rem;margin:0 0 4px;color:#23262F;">المسار</h2>
+                    <div style="font-size:.8rem;color:#9498A2;margin-bottom:18px;">مراحل سير القضية الست</div>
+                    <div style="display:flex;flex-direction:column;gap:3px;">
+                      <div style="display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;"><div style="width:26px;height:26px;flex:none;border-radius:8px;background:#F6F3EC;color:#9498A2;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;font-size:.82rem;">١</div><div style="flex:1;font-size:.88rem;font-weight:500;color:#23262F;">الاستقبال</div><div style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:#6E727C;">2</div></div>
+                      <div style="display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;"><div style="width:26px;height:26px;flex:none;border-radius:8px;background:#F6F3EC;color:#9498A2;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;font-size:.82rem;">٢</div><div style="flex:1;font-size:.88rem;font-weight:500;color:#23262F;">اعرف عميلك</div><div style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:#6E727C;">1</div></div>
+                      <div style="display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;background:#F3ECDA;"><div style="width:26px;height:26px;flex:none;border-radius:8px;background:linear-gradient(145deg,#E3CB8B,#C9A24B);color:#1b1500;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;font-size:.82rem;">٣</div><div style="flex:1;font-size:.88rem;font-weight:500;color:#23262F;">الحد الأدنى للإبلاغ</div><div style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:#6E727C;">1</div></div>
+                      <div style="display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;"><div style="width:26px;height:26px;flex:none;border-radius:8px;background:#F6F3EC;color:#9498A2;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;font-size:.82rem;">٤</div><div style="flex:1;font-size:.88rem;font-weight:500;color:#23262F;">المصدر المسؤول</div><div style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:#6E727C;">1</div></div>
+                      <div style="display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;background:#F3ECDA;"><div style="width:26px;height:26px;flex:none;border-radius:8px;background:linear-gradient(145deg,#E3CB8B,#C9A24B);color:#1b1500;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;font-size:.82rem;">٥</div><div style="flex:1;font-size:.88rem;font-weight:500;color:#23262F;">تقرير goAML</div><div style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:#B5872F;">3</div></div>
+                      <div style="display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;"><div style="width:26px;height:26px;flex:none;border-radius:8px;background:#F6F3EC;color:#9498A2;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;font-size:.82rem;">٦</div><div style="flex:1;font-size:.88rem;font-weight:500;color:#23262F;">سجل التدقيق</div><div style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:#B5872F;">9</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+          </sc-if>
+
+          <!-- ============ NEW CASE WIZARD ============ -->
+          <sc-if value="{{ isNewCase }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:22px;">
+              <div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;">New case</div>
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#B5872F;background:#F3ECDA;padding:2px 9px;border-radius:999px;">AT-2026-000148</span>
+                </div>
+                <h1 style="font-family:'Fraunces',serif;font-weight:600;font-size:1.85rem;margin:5px 0 0;color:#23262F;">{{ stageHeading }}</h1>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="text-align:end;line-height:1.25;"><div style="font-size:.78rem;color:#6E727C;">Customer</div><div style="font-weight:600;color:#23262F;">Rashid A. · 250 g 22K</div></div>
+                <div style="width:42px;height:42px;border-radius:10px;background:linear-gradient(145deg,#31353F,#16181D);color:#E3CB8B;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;">RA</div>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:248px 1fr;gap:22px;align-items:start;">
+
+              <!-- STAGE RAIL -->
+              <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:20px 18px;position:relative;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                <div style="font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;margin:0 4px 16px;">Compliance flow</div>
+                <div style="position:relative;">
+                  <div style="position:absolute;inset-inline-start:16px;top:14px;bottom:14px;width:2px;background:#E7E2D6;"></div>
+                  <div style="display:flex;flex-direction:column;gap:10px;position:relative;">
+                    <sc-for list="{{ railStages }}" as="r" hint-placeholder-count="6">
+                      <button onClick="{{ r.go }}" style="{{ r.rowStyle }}">
+                        <div style="width:34px;height:34px;flex:none;display:flex;align-items:center;justify-content:center;">
+                          <sc-if value="{{ r.done }}" hint-placeholder-val="{{ false }}">
+                            <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(145deg,#E3CB8B,#C9A24B);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 8px -3px rgba(201,162,75,.7),inset 0 0 0 2px rgba(255,255,255,.4);">
+                              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6 12.5l4 4 8-9" stroke="#1b1500" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                          </sc-if>
+                          <sc-if value="{{ r.notDone }}" hint-placeholder-val="{{ true }}">
+                            <div style="{{ r.nodeStyle }}">{{ r.n }}</div>
+                          </sc-if>
+                        </div>
+                        <div style="text-align:start;min-width:0;">
+                          <div style="font-size:.86rem;font-weight:600;color:{{ r.nameColor }};line-height:1.2;">{{ r.name }}</div>
+                          <div style="font-size:.72rem;color:#9498A2;">{{ r.desc }}</div>
+                        </div>
+                      </button>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+
+              <!-- STAGE CONTENT -->
+              <div style="display:flex;flex-direction:column;gap:18px;">
+
+                <!-- STAGE 1: INTAKE (EN) -->
+                <sc-if value="{{ stage1en }}" hint-placeholder-val="{{ true }}">
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+                    <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+                        <h3 style="font-family:'Fraunces',serif;font-size:1.08rem;font-weight:600;margin:0;color:#23262F;">Customer</h3>
+                        <span style="display:inline-flex;align-items:center;gap:5px;font-size:.74rem;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(59,122,94,.14);color:#3B7A5E;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 12.5l4 4 8-9" stroke="#3B7A5E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Scanned</span>
+                      </div>
+                      <div style="position:relative;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#23262F,#16181D);padding:16px 18px;color:#E7E9ED;margin-bottom:18px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:.62rem;letter-spacing:.14em;color:#AFB3BC;">UNITED ARAB EMIRATES</span><span style="font-size:.62rem;letter-spacing:.14em;color:#C9A24B;">EMIRATES ID</span></div>
+                        <div style="display:flex;gap:14px;margin-top:14px;align-items:center;">
+                          <div style="width:48px;height:58px;border-radius:8px;background:linear-gradient(145deg,#31353F,#1b1d24);border:1px solid #3a3f4a;"></div>
+                          <div><div style="font-family:'IBM Plex Mono',monospace;font-size:.92rem;color:#E3CB8B;">784-1987-3456712-9</div><div style="font-size:.86rem;margin-top:4px;color:#E7E9ED;font-weight:500;">Rashid Al Maktoum</div></div>
+                        </div>
+                      </div>
+                      <div style="font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;margin-bottom:10px;">AI-extracted fields</div>
+                      <div style="display:flex;flex-direction:column;gap:11px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid #F1ECE0;"><span style="font-size:.85rem;color:#6E727C;">Name</span><span style="display:flex;align-items:center;gap:7px;"><span style="font-size:.88rem;font-weight:600;color:#23262F;">Rashid Al Maktoum</span><span style="font-size:.6rem;font-weight:700;color:#B5872F;background:#F3ECDA;padding:2px 6px;border-radius:5px;">AI</span></span></div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid #F1ECE0;"><span style="font-size:.85rem;color:#6E727C;">Nationality</span><span style="font-size:.88rem;font-weight:600;color:#23262F;">UAE · Resident</span></div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid #F1ECE0;"><span style="font-size:.85rem;color:#6E727C;">Date of birth</span><span style="font-size:.88rem;font-weight:600;color:#23262F;">14 Mar 1987</span></div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:.85rem;color:#6E727C;">ID expiry</span><span style="font-size:.88rem;font-weight:600;color:#23262F;">09 Aug 2028</span></div>
+                      </div>
+                    </div>
+
+                    <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                      <h3 style="font-family:'Fraunces',serif;font-size:1.08rem;font-weight:600;margin:0 0 16px;color:#23262F;">Item</h3>
+                      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+                        <label><div style="font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;margin-bottom:6px;">Type</div><div style="border:1px solid #E7E2D6;border-radius:10px;padding:11px 13px;font-size:.9rem;color:#23262F;background:#FBFAF6;">Gold bar</div></label>
+                        <label><div style="font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;margin-bottom:6px;">Purity</div><div style="border:1px solid #E7E2D6;border-radius:10px;padding:11px 13px;font-size:.9rem;color:#23262F;background:#FBFAF6;">22K · 916</div></label>
+                        <label><div style="font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;margin-bottom:6px;">Weight</div><div style="border:1px solid #E7E2D6;border-radius:10px;padding:11px 13px;font-size:.9rem;color:#23262F;background:#FBFAF6;">250 g</div></label>
+                        <label><div style="font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;margin-bottom:6px;">Transaction</div><div style="border:1px solid #E7E2D6;border-radius:10px;padding:11px 13px;font-size:.9rem;color:#23262F;background:#FBFAF6;">Buy from customer</div></label>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:8px;background:#F3ECDA;border-radius:10px;padding:10px 13px;margin-bottom:16px;">
+                        <span style="width:8px;height:8px;border-radius:50%;background:#3B7A5E;animation:at-pulse 1.6s ease infinite;"></span>
+                        <span style="font-size:.8rem;color:#6E5A2A;font-weight:500;">Live gold price</span>
+                        <span style="margin-inline-start:auto;font-family:'IBM Plex Mono',monospace;font-weight:600;color:#23262F;">AED 245.60 / g</span>
+                      </div>
+                      <div style="border-top:1px dashed #E7E2D6;padding-top:16px;">
+                        <div style="font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;">Computed value</div>
+                        <div style="display:flex;align-items:baseline;gap:8px;margin-top:6px;"><span style="font-size:1rem;color:#6E727C;font-weight:600;">AED</span><span style="font-family:'Fraunces',serif;font-weight:700;font-size:2.6rem;line-height:1;color:#23262F;">61,400</span></div>
+                        <div style="font-size:.78rem;color:#9498A2;margin-top:6px;">250 g × AED 245.60 / g</div>
+                      </div>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <!-- STAGE 1: INTAKE (AR) -->
+                <sc-if value="{{ stage1ar }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;font-family:'Inter','Segoe UI',Tahoma,sans-serif;">
+                    <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+                        <h3 style="font-family:'Fraunces',serif;font-size:1.08rem;font-weight:600;margin:0;color:#23262F;">العميل</h3>
+                        <span style="display:inline-flex;align-items:center;gap:5px;font-size:.78rem;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(59,122,94,.14);color:#3B7A5E;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 12.5l4 4 8-9" stroke="#3B7A5E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>تم المسح</span>
+                      </div>
+                      <div style="border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#23262F,#16181D);padding:16px 18px;color:#E7E9ED;margin-bottom:18px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:.66rem;color:#AFB3BC;">الإمارات العربية المتحدة</span><span style="font-size:.66rem;color:#C9A24B;">الهوية الإماراتية</span></div>
+                        <div style="display:flex;gap:14px;margin-top:14px;align-items:center;flex-direction:row-reverse;">
+                          <div style="width:48px;height:58px;border-radius:8px;background:linear-gradient(145deg,#31353F,#1b1d24);border:1px solid #3a3f4a;"></div>
+                          <div style="text-align:start;"><div style="font-family:'IBM Plex Mono',monospace;font-size:.92rem;color:#E3CB8B;direction:ltr;">784-1987-3456712-9</div><div style="font-size:.9rem;margin-top:4px;color:#E7E9ED;font-weight:500;">راشد آل مكتوم</div></div>
+                        </div>
+                      </div>
+                      <div style="font-size:.66rem;letter-spacing:.04em;color:#9498A2;font-weight:600;margin-bottom:10px;">حقول مستخرجة بالذكاء الاصطناعي</div>
+                      <div style="display:flex;flex-direction:column;gap:11px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid #F1ECE0;"><span style="font-size:.88rem;color:#6E727C;">الاسم</span><span style="display:flex;align-items:center;gap:7px;"><span style="font-size:.9rem;font-weight:600;color:#23262F;">راشد آل مكتوم</span><span style="font-size:.62rem;font-weight:700;color:#B5872F;background:#F3ECDA;padding:2px 6px;border-radius:5px;">AI</span></span></div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid #F1ECE0;"><span style="font-size:.88rem;color:#6E727C;">الجنسية</span><span style="font-size:.9rem;font-weight:600;color:#23262F;">الإمارات · مقيم</span></div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid #F1ECE0;"><span style="font-size:.88rem;color:#6E727C;">تاريخ الميلاد</span><span style="font-size:.9rem;font-weight:600;color:#23262F;">١٤ مارس ١٩٨٧</span></div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:.88rem;color:#6E727C;">انتهاء الهوية</span><span style="font-size:.9rem;font-weight:600;color:#23262F;">٠٩ أغسطس ٢٠٢٨</span></div>
+                      </div>
+                    </div>
+                    <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                      <h3 style="font-family:'Fraunces',serif;font-size:1.08rem;font-weight:600;margin:0 0 16px;color:#23262F;">الصنف</h3>
+                      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+                        <label><div style="font-size:.66rem;color:#9498A2;font-weight:600;margin-bottom:6px;">النوع</div><div style="border:1px solid #E7E2D6;border-radius:10px;padding:11px 13px;font-size:.92rem;color:#23262F;background:#FBFAF6;">سبيكة ذهب</div></label>
+                        <label><div style="font-size:.66rem;color:#9498A2;font-weight:600;margin-bottom:6px;">العيار</div><div style="border:1px solid #E7E2D6;border-radius:10px;padding:11px 13px;font-size:.92rem;color:#23262F;background:#FBFAF6;">٢٢ قيراط · ٩١٦</div></label>
+                        <label><div style="font-size:.66rem;color:#9498A2;font-weight:600;margin-bottom:6px;">الوزن</div><div style="border:1px solid #E7E2D6;border-radius:10px;padding:11px 13px;font-size:.92rem;color:#23262F;background:#FBFAF6;">٢٥٠ غ</div></label>
+                        <label><div style="font-size:.66rem;color:#9498A2;font-weight:600;margin-bottom:6px;">المعاملة</div><div style="border:1px solid #E7E2D6;border-radius:10px;padding:11px 13px;font-size:.92rem;color:#23262F;background:#FBFAF6;">شراء من العميل</div></label>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:8px;background:#F3ECDA;border-radius:10px;padding:10px 13px;margin-bottom:16px;">
+                        <span style="width:8px;height:8px;border-radius:50%;background:#3B7A5E;animation:at-pulse 1.6s ease infinite;"></span>
+                        <span style="font-size:.84rem;color:#6E5A2A;font-weight:500;">سعر الذهب المباشر</span>
+                        <span style="margin-inline-start:auto;font-family:'IBM Plex Mono',monospace;font-weight:600;color:#23262F;direction:ltr;">AED 245.60 / g</span>
+                      </div>
+                      <div style="border-top:1px dashed #E7E2D6;padding-top:16px;">
+                        <div style="font-size:.66rem;color:#9498A2;font-weight:600;">القيمة المحتسبة</div>
+                        <div style="display:flex;align-items:baseline;gap:8px;margin-top:6px;direction:ltr;justify-content:flex-end;"><span style="font-family:'Fraunces',serif;font-weight:700;font-size:2.6rem;line-height:1;color:#23262F;">61,400</span><span style="font-size:1rem;color:#6E727C;font-weight:600;">AED</span></div>
+                        <div style="font-size:.8rem;color:#9498A2;margin-top:6px;">٢٥٠ غ × ٢٤٥٫٦٠ درهم / غ</div>
+                      </div>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <!-- STAGE 2: KYC / CDD -->
+                <sc-if value="{{ stage2 }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:18px;">
+                    <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                      <h3 style="font-family:'Fraunces',serif;font-size:1.08rem;font-weight:600;margin:0 0 4px;color:#23262F;">Screening</h3>
+                      <div style="font-size:.8rem;color:#9498A2;margin-bottom:18px;">Run 22 Jun 2026, 10:42 · all sources current</div>
+                      <div style="display:flex;flex-direction:column;gap:10px;">
+                        <div style="display:flex;align-items:center;gap:13px;padding:14px 16px;border:1px solid #E7E2D6;border-radius:12px;background:#FBFAF6;"><div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(145deg,#E3CB8B,#C9A24B);display:flex;align-items:center;justify-content:center;flex:none;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 12.5l4 4 8-9" stroke="#1b1500" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div style="flex:1;"><div style="font-weight:600;color:#23262F;font-size:.9rem;">Sanctions lists</div><div style="font-size:.78rem;color:#9498A2;">UN, OFAC, UK, EU, UAE Local Terrorist List</div></div><span style="font-size:.74rem;font-weight:700;color:#3B7A5E;">No match</span></div>
+                        <div style="display:flex;align-items:center;gap:13px;padding:14px 16px;border:1px solid #E7E2D6;border-radius:12px;background:#FBFAF6;"><div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(145deg,#E3CB8B,#C9A24B);display:flex;align-items:center;justify-content:center;flex:none;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 12.5l4 4 8-9" stroke="#1b1500" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div style="flex:1;"><div style="font-weight:600;color:#23262F;font-size:.9rem;">Politically exposed person</div><div style="font-size:.78rem;color:#9498A2;">Domestic &amp; foreign PEP databases</div></div><span style="font-size:.74rem;font-weight:700;color:#3B7A5E;">No match</span></div>
+                        <div style="display:flex;align-items:center;gap:13px;padding:14px 16px;border:1px solid #E7E2D6;border-radius:12px;background:#FBFAF6;"><div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(145deg,#E3CB8B,#C9A24B);display:flex;align-items:center;justify-content:center;flex:none;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 12.5l4 4 8-9" stroke="#1b1500" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div style="flex:1;"><div style="font-weight:600;color:#23262F;font-size:.9rem;">Adverse media</div><div style="font-size:.78rem;color:#9498A2;">AI scan of 1,240 sources, 24 months</div></div><span style="font-size:.74rem;font-weight:700;color:#3B7A5E;">Clear</span></div>
+                        <div style="display:flex;align-items:center;gap:13px;padding:14px 16px;border:1px solid #E7E2D6;border-radius:12px;background:#FBFAF6;"><div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(145deg,#E3CB8B,#C9A24B);display:flex;align-items:center;justify-content:center;flex:none;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 12.5l4 4 8-9" stroke="#1b1500" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div style="flex:1;"><div style="font-weight:600;color:#23262F;font-size:.9rem;">Identity verified</div><div style="font-size:.78rem;color:#9498A2;">Emirates ID biometric · liveness passed</div></div><span style="font-size:.74rem;font-weight:700;color:#3B7A5E;">Verified</span></div>
+                      </div>
+                    </div>
+                    <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                      <h3 style="font-family:'Fraunces',serif;font-size:1.08rem;font-weight:600;margin:0 0 16px;color:#23262F;">Risk score</h3>
+                      <div style="text-align:center;padding:8px 0 16px;">
+                        <div style="position:relative;width:130px;height:130px;margin:0 auto;border-radius:50%;background:conic-gradient(#C9A24B 0 55%, #EEE9DC 55% 100%);display:flex;align-items:center;justify-content:center;"><div style="width:100px;height:100px;border-radius:50%;background:#FFFFFF;display:flex;flex-direction:column;align-items:center;justify-content:center;"><span style="font-family:'Fraunces',serif;font-weight:700;font-size:1.5rem;color:#B5872F;">Medium</span><span style="font-size:.72rem;color:#9498A2;">score 55 / 100</span></div></div>
+                      </div>
+                      <div style="font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;margin-bottom:10px;">Reasons</div>
+                      <div style="display:flex;flex-direction:column;gap:9px;">
+                        <div style="display:flex;gap:9px;font-size:.83rem;color:#23262F;"><span style="color:#C9A24B;font-weight:700;">·</span>Cash-equivalent transaction above AED 55,000</div>
+                        <div style="display:flex;gap:9px;font-size:.83rem;color:#23262F;"><span style="color:#C9A24B;font-weight:700;">·</span>Prior linked transaction within 30 days</div>
+                        <div style="display:flex;gap:9px;font-size:.83rem;color:#23262F;"><span style="color:#3B7A5E;font-weight:700;">·</span>Established customer · 3-year history</div>
+                      </div>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <!-- STAGE 3: THRESHOLD -->
+                <sc-if value="{{ stage3 }}" hint-placeholder-val="{{ false }}">
+                  <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                      <h3 style="font-family:'Fraunces',serif;font-size:1.08rem;font-weight:600;margin:0;color:#23262F;">Reporting threshold</h3>
+                      <span style="display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:700;padding:6px 13px;border-radius:999px;background:rgba(155,59,46,.13);color:#9B3B2E;"><span style="width:7px;height:7px;border-radius:50%;background:#9B3B2E;"></span>Reportable</span>
+                    </div>
+                    <div style="font-size:.84rem;color:#6E727C;margin-bottom:24px;">DPMS cash threshold is AED 55,000. Aggregated value exceeds the limit.</div>
+                    <div style="position:relative;height:46px;border-radius:10px;background:#F1ECE0;overflow:hidden;margin-bottom:8px;">
+                      <div style="position:absolute;inset-inline-start:0;top:0;bottom:0;width:67%;background:linear-gradient(90deg,#C9A24B,#9B3B2E);border-radius:10px;"></div>
+                      <div style="position:absolute;inset-inline-start:60.4%;top:-4px;bottom:-4px;width:2px;background:#23262F;"></div>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;font-size:.76rem;color:#9498A2;margin-bottom:24px;"><span style="font-family:'IBM Plex Mono',monospace;">0</span><span style="color:#23262F;font-weight:600;">Threshold AED 55,000</span><span style="font-family:'IBM Plex Mono',monospace;">100,000</span></div>
+
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+                      <div style="border:1px solid #E7E2D6;border-radius:12px;padding:18px;background:#FBFAF6;">
+                        <div style="font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;margin-bottom:12px;">Linked transactions</div>
+                        <div style="display:flex;justify-content:space-between;padding-bottom:11px;border-bottom:1px solid #E7E2D6;"><div><div style="font-size:.86rem;font-weight:600;color:#23262F;">This transaction</div><div style="font-size:.74rem;color:#9498A2;">22 Jun 2026 · 250 g 22K</div></div><div style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:#23262F;">61,400</div></div>
+                        <div style="display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid #E7E2D6;"><div><div style="font-size:.86rem;font-weight:600;color:#23262F;">Prior transaction</div><div style="font-size:.74rem;color:#9498A2;">04 Jun 2026 · 18 days ago</div></div><div style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:#23262F;">30,000</div></div>
+                        <div style="display:flex;justify-content:space-between;padding-top:12px;"><div style="font-size:.9rem;font-weight:700;color:#23262F;">Aggregate</div><div style="font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:1.05rem;color:#9B3B2E;">AED 91,400</div></div>
+                      </div>
+                      <div style="border:1px solid rgba(155,59,46,.3);border-radius:12px;padding:18px;background:rgba(155,59,46,.05);display:flex;flex-direction:column;justify-content:center;">
+                        <div style="font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#9B3B2E;font-weight:700;margin-bottom:8px;">Determination</div>
+                        <div style="font-family:'Fraunces',serif;font-weight:700;font-size:1.35rem;color:#9B3B2E;line-height:1.2;">Reportable transaction</div>
+                        <div style="font-size:.83rem;color:#6E727C;margin-top:10px;line-height:1.5;">Aggregate of AED 91,400 exceeds the AED 55,000 DPMS threshold. A goAML report is required before completion.</div>
+                      </div>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <!-- STAGE 4: SOURCING -->
+                <sc-if value="{{ stage4 }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:18px;">
+                    <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                      <h3 style="font-family:'Fraunces',serif;font-size:1.08rem;font-weight:600;margin:0 0 4px;color:#23262F;">OECD five-step due diligence</h3>
+                      <div style="font-size:.8rem;color:#9498A2;margin-bottom:18px;">Responsible sourcing of gold · customer-owned declaration</div>
+                      <div style="display:flex;flex-direction:column;gap:8px;">
+                        <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:11px;background:#FBFAF6;border:1px solid #E7E2D6;"><div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(145deg,#E3CB8B,#C9A24B);display:flex;align-items:center;justify-content:center;flex:none;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M6 12.5l4 4 8-9" stroke="#1b1500" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span style="font-size:.88rem;color:#23262F;font-weight:500;">1 · Establish management systems</span></div>
+                        <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:11px;background:#FBFAF6;border:1px solid #E7E2D6;"><div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(145deg,#E3CB8B,#C9A24B);display:flex;align-items:center;justify-content:center;flex:none;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M6 12.5l4 4 8-9" stroke="#1b1500" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span style="font-size:.88rem;color:#23262F;font-weight:500;">2 · Identify &amp; assess supply-chain risk</span></div>
+                        <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:11px;background:#FBFAF6;border:1px solid #E7E2D6;"><div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(145deg,#E3CB8B,#C9A24B);display:flex;align-items:center;justify-content:center;flex:none;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M6 12.5l4 4 8-9" stroke="#1b1500" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span style="font-size:.88rem;color:#23262F;font-weight:500;">3 · Strategy to respond to risk</span></div>
+                        <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:11px;background:#FBFAF6;border:1px solid #E7E2D6;"><div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(145deg,#E3CB8B,#C9A24B);display:flex;align-items:center;justify-content:center;flex:none;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M6 12.5l4 4 8-9" stroke="#1b1500" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span style="font-size:.88rem;color:#23262F;font-weight:500;">4 · Independent third-party audit</span></div>
+                        <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:11px;background:#FBFAF6;border:1px solid #E7E2D6;"><div style="width:26px;height:26px;border-radius:50%;border:2px solid #C9A24B;display:flex;align-items:center;justify-content:center;flex:none;font-family:'IBM Plex Mono',monospace;font-size:.74rem;color:#B5872F;font-weight:600;">5</div><span style="font-size:.88rem;color:#23262F;font-weight:500;">5 · Report on supply-chain due diligence</span></div>
+                      </div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:18px;">
+                      <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                        <h3 style="font-family:'Fraunces',serif;font-size:1.02rem;font-weight:600;margin:0 0 4px;color:#23262F;">Sourcing risk</h3>
+                        <div style="display:flex;align-items:baseline;gap:8px;margin-top:8px;"><span style="font-family:'Fraunces',serif;font-weight:700;font-size:1.9rem;color:#3B7A5E;">Low</span><span style="font-size:.8rem;color:#9498A2;">customer-owned · domestic</span></div>
+                      </div>
+                      <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                        <div style="font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;margin-bottom:12px;">Documents</div>
+                        <div style="display:flex;align-items:center;gap:11px;padding:11px;border:1px solid #E7E2D6;border-radius:10px;margin-bottom:9px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B7A5E" stroke-width="1.7"><path d="M6 3h8l4 4v14H6z" stroke-linejoin="round"/><path d="M14 3v4h4" stroke-linejoin="round"/></svg><div style="flex:1;"><div style="font-size:.82rem;font-weight:600;color:#23262F;">Source declaration.pdf</div><div style="font-size:.72rem;color:#9498A2;">Signed · 22 Jun</div></div></div>
+                        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:18px;border:1.5px dashed #D8D0BE;border-radius:10px;cursor:pointer;color:#9498A2;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A24B" stroke-width="1.7"><path d="M12 16V4M8 8l4-4 4 4" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 20h14" stroke-linecap="round"/></svg><span style="font-size:.8rem;">Upload supporting document</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <!-- STAGE 5: goAML REPORT -->
+                <sc-if value="{{ stage5 }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:18px;">
+                    <div style="background:#FBFAF6;border:1px solid #E7E2D6;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                      <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 18px;background:#16181D;">
+                        <span style="font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#AFB3BC;letter-spacing:.04em;">goAML · DPMSR draft</span>
+                        <span style="font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#E3CB8B;">AT-2026-000148</span>
+                      </div>
+                      <div style="padding:20px 22px;font-family:'IBM Plex Mono',monospace;font-size:.8rem;line-height:1.75;color:#23262F;">
+                        <div style="color:#9498A2;">&lt;report_type&gt;</div>
+                        <div style="padding-inline-start:16px;">DPMSR — Dealer in Precious Metals &amp; Stones</div>
+                        <div style="color:#9498A2;">&lt;reporting_entity&gt;</div>
+                        <div style="padding-inline-start:16px;">Al Noor Gold Trading LLC · DMCC-7741</div>
+                        <div style="color:#9498A2;">&lt;transaction&gt;</div>
+                        <div style="padding-inline-start:16px;">date ............ 2026-06-22</div>
+                        <div style="padding-inline-start:16px;">item ............ Gold bar, 250 g, 22K (916)</div>
+                        <div style="padding-inline-start:16px;">value_aed ....... 61,400.00</div>
+                        <div style="padding-inline-start:16px;">aggregate_aed ... 91,400.00</div>
+                        <div style="color:#9498A2;">&lt;party·conductor&gt;</div>
+                        <div style="padding-inline-start:16px;">name ............ Rashid Al Maktoum</div>
+                        <div style="padding-inline-start:16px;">id .............. 784-1987-3456712-9</div>
+                        <div style="padding-inline-start:16px;">risk ............ Medium</div>
+                      </div>
+                      <div style="padding:0 22px 20px;">
+                        <div style="font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;margin-bottom:7px;font-family:'Inter',sans-serif;">Plain-language narrative</div>
+                        <div style="font-family:'Inter',sans-serif;font-size:.85rem;color:#23262F;line-height:1.6;background:#FFFFFF;border:1px solid #E7E2D6;border-radius:10px;padding:13px 15px;">On 22 June 2026, an established resident customer sold a 250 g 22K gold bar valued at AED 61,400. Aggregated with a prior transaction 18 days earlier (AED 30,000), the total of AED 91,400 exceeds the AED 55,000 reporting threshold. Screening returned no matches; risk assessed Medium.</div>
+                      </div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:18px;">
+                      <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                        <div style="font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;margin-bottom:14px;">Report readiness</div>
+                        <div style="display:flex;flex-direction:column;gap:11px;">
+                          <div style="display:flex;align-items:center;gap:9px;font-size:.85rem;color:#23262F;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#3B7A5E"/><path d="M7 12.5l3 3 7-7.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>All required fields populated</div>
+                          <div style="display:flex;align-items:center;gap:9px;font-size:.85rem;color:#23262F;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#3B7A5E"/><path d="M7 12.5l3 3 7-7.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Schema validated · goAML 5.1</div>
+                          <div style="display:flex;align-items:center;gap:9px;font-size:.85rem;color:#23262F;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#3B7A5E"/><path d="M7 12.5l3 3 7-7.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Narrative reviewed</div>
+                        </div>
+                      </div>
+                      <div style="background:#F3ECDA;border:1px solid #E3CB8B;border-radius:14px;padding:20px;">
+                        <div style="font-size:.85rem;color:#6E5A2A;line-height:1.5;margin-bottom:14px;">Nothing is filed automatically. Review the draft, then submit to the FIU goAML portal.</div>
+                        <button style="width:100%;background:linear-gradient(145deg,#E3CB8B,#C9A24B);color:#1b1500;border:none;border-radius:10px;padding:13px;font-family:inherit;font-weight:700;font-size:.92rem;cursor:pointer;box-shadow:0 6px 16px -8px rgba(201,162,75,.8);">Review &amp; file report</button>
+                      </div>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <!-- STAGE 6: AUDIT TRAIL -->
+                <sc-if value="{{ stage6 }}" hint-placeholder-val="{{ false }}">
+                  <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+                      <h3 style="font-family:'Fraunces',serif;font-size:1.08rem;font-weight:600;margin:0;color:#23262F;">Audit trail</h3>
+                      <span style="display:inline-flex;align-items:center;gap:7px;font-size:.8rem;font-weight:700;padding:6px 13px;border-radius:999px;background:rgba(59,122,94,.14);color:#3B7A5E;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.4-3 8-7 10-4-2-7-5.6-7-10V6z" stroke="#3B7A5E" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12l2 2 4-4.5" stroke="#3B7A5E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Inspection-ready</span>
+                    </div>
+                    <div style="font-size:.82rem;color:#6E727C;margin-bottom:22px;">Tamper-evident log · each entry hashed and chained · case AT-2026-000148</div>
+                    <div style="position:relative;padding-inline-start:8px;">
+                      <div style="position:absolute;inset-inline-start:13px;top:8px;bottom:8px;width:2px;background:#E7E2D6;"></div>
+                      <div style="display:flex;flex-direction:column;gap:2px;">
+                        <sc-for list="{{ auditLog }}" as="a" hint-placeholder-count="7">
+                          <div style="display:flex;gap:16px;padding:11px 0;position:relative;">
+                            <div style="width:12px;height:12px;flex:none;border-radius:50%;background:{{ a.dot }};margin-top:3px;margin-inline-start:7px;border:2px solid #FFFFFF;box-shadow:0 0 0 2px #E7E2D6;z-index:1;"></div>
+                            <div style="flex:1;display:flex;justify-content:space-between;gap:16px;align-items:flex-start;">
+                              <div><div style="font-size:.88rem;font-weight:600;color:#23262F;">{{ a.event }}</div><div style="font-size:.76rem;color:#9498A2;">{{ a.actor }}</div></div>
+                              <div style="text-align:end;flex:none;"><div style="font-family:'IBM Plex Mono',monospace;font-size:.76rem;color:#6E727C;">{{ a.time }}</div><div style="font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:#B5872F;">{{ a.hash }}</div></div>
+                            </div>
+                          </div>
+                        </sc-for>
+                      </div>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <!-- WIZARD FOOTER -->
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:14px 20px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                  <button onClick="{{ prevStage }}" style="{{ prevStyle }}">← Back</button>
+                  <div style="font-size:.8rem;color:#9498A2;">Stage {{ stageNum }} of 6</div>
+                  <button onClick="{{ nextStage }}" style="{{ nextStyle }}">{{ nextLabel }}</button>
+                </div>
+
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ============ CUSTOMERS ============ -->
+          <sc-if value="{{ isCustomers }}" hint-placeholder-val="{{ false }}">
+            <sc-if value="{{ custList }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:24px;">
+                <div><div style="font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;">Directory</div><h1 style="font-family:'Fraunces',serif;font-weight:600;font-size:1.85rem;margin:5px 0 0;color:#23262F;">Customers</h1></div>
+                <div style="display:flex;align-items:center;gap:10px;background:#FFFFFF;border:1px solid #E7E2D6;border-radius:10px;padding:9px 14px;width:280px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9498A2" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5" stroke-linecap="round"/></svg><span style="font-size:.85rem;color:#9498A2;">Search name or ID…</span></div>
+              </div>
+              <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                <table style="width:100%;border-collapse:collapse;font-size:.85rem;">
+                  <thead><tr style="background:#16181D;">
+                    <th style="text-align:start;padding:11px 20px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#AFB3BC;font-weight:600;">Customer</th>
+                    <th style="text-align:start;padding:11px 14px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#AFB3BC;font-weight:600;">Emirates ID</th>
+                    <th style="text-align:start;padding:11px 14px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#AFB3BC;font-weight:600;">Type</th>
+                    <th style="text-align:end;padding:11px 14px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#AFB3BC;font-weight:600;">Cases</th>
+                    <th style="text-align:start;padding:11px 14px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#AFB3BC;font-weight:600;">Risk</th>
+                    <th style="text-align:end;padding:11px 20px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#AFB3BC;font-weight:600;">Last seen</th>
+                  </tr></thead>
+                  <tbody>
+                    <sc-for list="{{ customers }}" as="c" hint-placeholder-count="6">
+                      <tr onClick="{{ openCustomer }}" style="background:{{ c.rowBg }};border-bottom:1px solid #E7E2D6;cursor:pointer;">
+                        <td style="padding:13px 20px;"><div style="display:flex;align-items:center;gap:11px;"><div style="width:32px;height:32px;border-radius:50%;background:{{ c.avBg }};color:{{ c.avColor }};display:flex;align-items:center;justify-content:center;font-weight:600;font-size:.78rem;font-family:'Fraunces',serif;">{{ c.initials }}</div><span style="font-weight:600;color:#23262F;">{{ c.name }}</span></div></td>
+                        <td style="padding:13px 14px;font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#6E727C;">{{ c.eid }}</td>
+                        <td style="padding:13px 14px;color:#6E727C;">{{ c.type }}</td>
+                        <td style="padding:13px 14px;text-align:end;font-family:'IBM Plex Mono',monospace;color:#23262F;">{{ c.cases }}</td>
+                        <td style="padding:13px 14px;"><span style="display:inline-flex;align-items:center;gap:5px;font-size:.74rem;font-weight:700;padding:4px 10px;border-radius:999px;background:{{ c.riskBg }};color:{{ c.riskColor }};">{{ c.risk }}</span></td>
+                        <td style="padding:13px 20px;text-align:end;color:#9498A2;font-size:.8rem;">{{ c.last }}</td>
+                      </tr>
+                    </sc-for>
+                  </tbody>
+                </table>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ custProfile }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ backToCustomers }}" style="display:inline-flex;align-items:center;gap:7px;background:none;border:none;cursor:pointer;color:#6E727C;font-family:inherit;font-size:.85rem;margin-bottom:18px;">← All customers</button>
+              <div style="display:grid;grid-template-columns:320px 1fr;gap:20px;align-items:start;">
+                <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                  <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+                    <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(145deg,#31353F,#16181D);color:#E3CB8B;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;font-size:1.5rem;">RA</div>
+                    <div style="font-family:'Fraunces',serif;font-weight:600;font-size:1.3rem;margin-top:14px;color:#23262F;">Rashid Al Maktoum</div>
+                    <div style="font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#6E727C;margin-top:4px;">784-1987-3456712-9</div>
+                    <span style="margin-top:12px;display:inline-flex;align-items:center;gap:5px;font-size:.74rem;font-weight:700;padding:5px 12px;border-radius:999px;background:rgba(201,162,75,.18);color:#B5872F;">Medium risk</span>
+                  </div>
+                  <div style="border-top:1px solid #F1ECE0;margin-top:20px;padding-top:18px;display:flex;flex-direction:column;gap:12px;">
+                    <div style="display:flex;justify-content:space-between;"><span style="font-size:.82rem;color:#9498A2;">Nationality</span><span style="font-size:.85rem;font-weight:600;color:#23262F;">UAE · Resident</span></div>
+                    <div style="display:flex;justify-content:space-between;"><span style="font-size:.82rem;color:#9498A2;">Customer since</span><span style="font-size:.85rem;font-weight:600;color:#23262F;">Feb 2023</span></div>
+                    <div style="display:flex;justify-content:space-between;"><span style="font-size:.82rem;color:#9498A2;">Total cases</span><span style="font-size:.85rem;font-weight:600;color:#23262F;">4</span></div>
+                    <div style="display:flex;justify-content:space-between;"><span style="font-size:.82rem;color:#9498A2;">Lifetime value</span><span style="font-family:'IBM Plex Mono',monospace;font-size:.85rem;font-weight:600;color:#23262F;">AED 214,300</span></div>
+                  </div>
+                </div>
+                <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                  <h3 style="font-family:'Fraunces',serif;font-size:1.08rem;font-weight:600;margin:0 0 16px;color:#23262F;">Transaction history</h3>
+                  <table style="width:100%;border-collapse:collapse;font-size:.85rem;">
+                    <tbody>
+                      <tr style="border-bottom:1px solid #F1ECE0;"><td style="padding:12px 0;font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#6E727C;">AT-2026-000148</td><td style="padding:12px 0;color:#23262F;">250 g · 22K bar</td><td style="padding:12px 0;text-align:end;font-family:'IBM Plex Mono',monospace;color:#23262F;">61,400</td><td style="padding:12px 0;text-align:end;"><span style="font-size:.72rem;font-weight:700;color:#9B3B2E;">Reportable</span></td></tr>
+                      <tr style="border-bottom:1px solid #F1ECE0;"><td style="padding:12px 0;font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#6E727C;">AT-2026-000092</td><td style="padding:12px 0;color:#23262F;">120 g · 22K bar</td><td style="padding:12px 0;text-align:end;font-family:'IBM Plex Mono',monospace;color:#23262F;">30,000</td><td style="padding:12px 0;text-align:end;"><span style="font-size:.72rem;font-weight:700;color:#3B7A5E;">Cleared</span></td></tr>
+                      <tr style="border-bottom:1px solid #F1ECE0;"><td style="padding:12px 0;font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#6E727C;">AT-2025-001771</td><td style="padding:12px 0;color:#23262F;">90 g · 24K coins</td><td style="padding:12px 0;text-align:end;font-family:'IBM Plex Mono',monospace;color:#23262F;">22,400</td><td style="padding:12px 0;text-align:end;"><span style="font-size:.72rem;font-weight:700;color:#3B7A5E;">Cleared</span></td></tr>
+                      <tr><td style="padding:12px 0;font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#6E727C;">AT-2025-000418</td><td style="padding:12px 0;color:#23262F;">420 g · 22K bars</td><td style="padding:12px 0;text-align:end;font-family:'IBM Plex Mono',monospace;color:#23262F;">100,500</td><td style="padding:12px 0;text-align:end;"><span style="font-size:.72rem;font-weight:700;color:#9B3B2E;">Filed</span></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </sc-if>
+          </sc-if>
+
+          <!-- ============ REPORTS ============ -->
+          <sc-if value="{{ isReports }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-bottom:24px;"><div style="font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;">goAML filings</div><h1 style="font-family:'Fraunces',serif;font-weight:600;font-size:1.85rem;margin:5px 0 0;color:#23262F;">Reports</h1></div>
+            <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+              <table style="width:100%;border-collapse:collapse;font-size:.85rem;">
+                <thead><tr style="background:#16181D;">
+                  <th style="text-align:start;padding:11px 20px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#AFB3BC;font-weight:600;">Reference</th>
+                  <th style="text-align:start;padding:11px 14px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#AFB3BC;font-weight:600;">Type</th>
+                  <th style="text-align:start;padding:11px 14px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#AFB3BC;font-weight:600;">Customer</th>
+                  <th style="text-align:end;padding:11px 14px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#AFB3BC;font-weight:600;">Value AED</th>
+                  <th style="text-align:start;padding:11px 20px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#AFB3BC;font-weight:600;">Status</th>
+                </tr></thead>
+                <tbody>
+                  <sc-for list="{{ reports }}" as="r" hint-placeholder-count="5">
+                    <tr style="background:{{ r.rowBg }};border-bottom:1px solid #E7E2D6;">
+                      <td style="padding:13px 20px;font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#6E727C;">{{ r.id }}</td>
+                      <td style="padding:13px 14px;color:#23262F;font-weight:500;">{{ r.type }}</td>
+                      <td style="padding:13px 14px;color:#6E727C;">{{ r.customer }}</td>
+                      <td style="padding:13px 14px;text-align:end;font-family:'IBM Plex Mono',monospace;color:#23262F;">{{ r.value }}</td>
+                      <td style="padding:13px 20px;"><span style="display:inline-flex;align-items:center;gap:5px;font-size:.74rem;font-weight:700;padding:4px 10px;border-radius:999px;background:{{ r.pillBg }};color:{{ r.pillColor }};">{{ r.status }}</span></td>
+                    </tr>
+                  </sc-for>
+                </tbody>
+              </table>
+            </div>
+          </sc-if>
+
+          <!-- ============ AUDIT ============ -->
+          <sc-if value="{{ isAudit }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:24px;"><div><div style="font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;">Tamper-evident log</div><h1 style="font-family:'Fraunces',serif;font-weight:600;font-size:1.85rem;margin:5px 0 0;color:#23262F;">Audit</h1></div><span style="display:inline-flex;align-items:center;gap:7px;font-size:.8rem;font-weight:700;padding:7px 14px;border-radius:999px;background:rgba(59,122,94,.14);color:#3B7A5E;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.4-3 8-7 10-4-2-7-5.6-7-10V6z" stroke="#3B7A5E" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12l2 2 4-4.5" stroke="#3B7A5E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Inspection-ready</span></div>
+            <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+              <div style="position:relative;padding-inline-start:8px;">
+                <div style="position:absolute;inset-inline-start:13px;top:8px;bottom:8px;width:2px;background:#E7E2D6;"></div>
+                <div style="display:flex;flex-direction:column;">
+                  <sc-for list="{{ auditLog }}" as="a" hint-placeholder-count="7">
+                    <div style="display:flex;gap:16px;padding:11px 0;position:relative;">
+                      <div style="width:12px;height:12px;flex:none;border-radius:50%;background:{{ a.dot }};margin-top:3px;margin-inline-start:7px;border:2px solid #FFFFFF;box-shadow:0 0 0 2px #E7E2D6;z-index:1;"></div>
+                      <div style="flex:1;display:flex;justify-content:space-between;gap:16px;align-items:flex-start;"><div><div style="font-size:.88rem;font-weight:600;color:#23262F;">{{ a.event }}</div><div style="font-size:.76rem;color:#9498A2;">{{ a.actor }}</div></div><div style="text-align:end;flex:none;"><div style="font-family:'IBM Plex Mono',monospace;font-size:.76rem;color:#6E727C;">{{ a.time }}</div><div style="font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:#B5872F;">{{ a.hash }}</div></div></div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ============ SETTINGS ============ -->
+          <sc-if value="{{ isSettings }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-bottom:24px;"><div style="font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;">Workspace</div><h1 style="font-family:'Fraunces',serif;font-weight:600;font-size:1.85rem;margin:5px 0 0;color:#23262F;">Settings</h1></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:880px;">
+              <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                <h3 style="font-family:'Fraunces',serif;font-size:1.02rem;font-weight:600;margin:0 0 16px;color:#23262F;">Entity</h3>
+                <div style="display:flex;flex-direction:column;gap:13px;">
+                  <div style="display:flex;justify-content:space-between;"><span style="font-size:.84rem;color:#9498A2;">Legal name</span><span style="font-size:.85rem;font-weight:600;color:#23262F;">Al Noor Gold Trading LLC</span></div>
+                  <div style="display:flex;justify-content:space-between;"><span style="font-size:.84rem;color:#9498A2;">Licence</span><span style="font-family:'IBM Plex Mono',monospace;font-size:.82rem;color:#23262F;">DMCC-7741</span></div>
+                  <div style="display:flex;justify-content:space-between;"><span style="font-size:.84rem;color:#9498A2;">goAML org ID</span><span style="font-family:'IBM Plex Mono',monospace;font-size:.82rem;color:#23262F;">UAE-FIU-44821</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:.84rem;color:#9498A2;">Connection</span><span style="display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:700;color:#3B7A5E;"><span style="width:7px;height:7px;border-radius:50%;background:#3B7A5E;"></span>Active</span></div>
+                </div>
+              </div>
+              <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                <h3 style="font-family:'Fraunces',serif;font-size:1.02rem;font-weight:600;margin:0 0 16px;color:#23262F;">Thresholds &amp; policy</h3>
+                <div style="display:flex;flex-direction:column;gap:13px;">
+                  <div style="display:flex;justify-content:space-between;"><span style="font-size:.84rem;color:#9498A2;">DPMS cash threshold</span><span style="font-family:'IBM Plex Mono',monospace;font-size:.85rem;font-weight:600;color:#23262F;">AED 55,000</span></div>
+                  <div style="display:flex;justify-content:space-between;"><span style="font-size:.84rem;color:#9498A2;">Aggregation window</span><span style="font-size:.85rem;font-weight:600;color:#23262F;">30 days</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:.84rem;color:#9498A2;">Auto-file reports</span><span style="display:inline-flex;width:38px;height:22px;border-radius:999px;background:#E7E2D6;padding:2px;"><span style="width:18px;height:18px;border-radius:50%;background:#FFFFFF;box-shadow:0 1px 2px rgba(0,0,0,.2);"></span></span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:.84rem;color:#9498A2;">Require dual review</span><span style="display:inline-flex;width:38px;height:22px;border-radius:999px;background:#C9A24B;padding:2px;justify-content:flex-end;"><span style="width:18px;height:18px;border-radius:50%;background:#FFFFFF;box-shadow:0 1px 2px rgba(0,0,0,.2);"></span></span></div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ============ UI KIT ============ -->
+          <sc-if value="{{ isKit }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-bottom:26px;"><div style="font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;">Foundations</div><h1 style="font-family:'Fraunces',serif;font-weight:600;font-size:1.85rem;margin:5px 0 0;color:#23262F;">UI kit</h1></div>
+            <div style="display:flex;flex-direction:column;gap:18px;max-width:1040px;">
+
+              <!-- COLOURS -->
+              <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;margin:0 0 18px;color:#23262F;">Colour</h3>
+                <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:14px;">
+                  <div><div style="height:64px;border-radius:10px;background:#16181D;border:1px solid #E7E2D6;"></div><div style="font-size:.78rem;font-weight:600;margin-top:8px;color:#23262F;">Ink</div><div style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9498A2;">#16181D</div></div>
+                  <div><div style="height:64px;border-radius:10px;background:#23262F;border:1px solid #E7E2D6;"></div><div style="font-size:.78rem;font-weight:600;margin-top:8px;color:#23262F;">Panel</div><div style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9498A2;">#23262F</div></div>
+                  <div><div style="height:64px;border-radius:10px;background:linear-gradient(145deg,#E3CB8B,#C9A24B);"></div><div style="font-size:.78rem;font-weight:600;margin-top:8px;color:#23262F;">Gold</div><div style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9498A2;">#C9A24B</div></div>
+                  <div><div style="height:64px;border-radius:10px;background:#F6F3EC;border:1px solid #E7E2D6;"></div><div style="font-size:.78rem;font-weight:600;margin-top:8px;color:#23262F;">App bg</div><div style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9498A2;">#F6F3EC</div></div>
+                  <div><div style="height:64px;border-radius:10px;background:#FFFFFF;border:1px solid #E7E2D6;"></div><div style="font-size:.78rem;font-weight:600;margin-top:8px;color:#23262F;">Card</div><div style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9498A2;">#FFFFFF</div></div>
+                  <div><div style="height:64px;border-radius:10px;background:#23262F;border:1px solid #E7E2D6;color:#E7E9ED;display:flex;align-items:center;justify-content:center;font-size:.72rem;">Aa</div><div style="font-size:.78rem;font-weight:600;margin-top:8px;color:#23262F;">Text</div><div style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9498A2;">#23262F</div></div>
+                  <div><div style="height:64px;border-radius:10px;background:#3B7A5E;"></div><div style="font-size:.78rem;font-weight:600;margin-top:8px;color:#23262F;">Clear</div><div style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9498A2;">#3B7A5E</div></div>
+                  <div><div style="height:64px;border-radius:10px;background:#9B3B2E;"></div><div style="font-size:.78rem;font-weight:600;margin-top:8px;color:#23262F;">Flag</div><div style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9498A2;">#9B3B2E</div></div>
+                  <div><div style="height:64px;border-radius:10px;background:#C9A24B;"></div><div style="font-size:.78rem;font-weight:600;margin-top:8px;color:#23262F;">Warn</div><div style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9498A2;">#C9A24B</div></div>
+                  <div><div style="height:64px;border-radius:10px;background:#F3ECDA;border:1px solid #E7E2D6;"></div><div style="font-size:.78rem;font-weight:600;margin-top:8px;color:#23262F;">Gold wash</div><div style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9498A2;">#F3ECDA</div></div>
+                  <div><div style="height:64px;border-radius:10px;background:#FBFAF6;border:1px solid #E7E2D6;"></div><div style="font-size:.78rem;font-weight:600;margin-top:8px;color:#23262F;">Card alt</div><div style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9498A2;">#FBFAF6</div></div>
+                  <div><div style="height:64px;border-radius:10px;background:#E7E2D6;"></div><div style="font-size:.78rem;font-weight:600;margin-top:8px;color:#23262F;">Hairline</div><div style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9498A2;">#E7E2D6</div></div>
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:18px;align-items:start;">
+                <!-- TYPE -->
+                <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                  <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;margin:0 0 18px;color:#23262F;">Typography</h3>
+                  <div style="display:flex;flex-direction:column;gap:16px;">
+                    <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #F1ECE0;padding-bottom:14px;"><span style="font-family:'Fraunces',serif;font-weight:700;font-size:2.2rem;color:#23262F;">AurumTrace</span><span style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9498A2;">Fraunces 700</span></div>
+                    <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #F1ECE0;padding-bottom:14px;"><span style="font-family:'Fraunces',serif;font-weight:600;font-size:1.6rem;color:#23262F;">Page title</span><span style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9498A2;">Fraunces 600 · 1.75r</span></div>
+                    <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #F1ECE0;padding-bottom:14px;"><span style="font-family:'Inter',sans-serif;font-weight:500;font-size:.95rem;color:#23262F;">Body &amp; controls — Inter regular for all UI text.</span><span style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9498A2;">Inter · 0.95r</span></div>
+                    <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #F1ECE0;padding-bottom:14px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:.85rem;color:#23262F;">AT-2026-000148</span><span style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9498A2;">IBM Plex Mono</span></div>
+                    <div style="display:flex;align-items:baseline;justify-content:space-between;"><span style="font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;">Uppercase field label</span><span style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9498A2;">0.66r · .12em</span></div>
+                  </div>
+                </div>
+
+                <!-- HALLMARK + ICONS -->
+                <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                  <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;margin:0 0 6px;color:#23262F;">Hallmark stamp</h3>
+                  <div style="font-size:.8rem;color:#9498A2;margin-bottom:18px;">Marks a completed compliance step</div>
+                  <div style="display:flex;align-items:center;gap:22px;margin-bottom:24px;">
+                    <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(145deg,#E3CB8B,#C9A24B);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -6px rgba(201,162,75,.7),inset 0 0 0 3px rgba(255,255,255,.4);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M6 12.5l4 4 8-9" stroke="#1b1500" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                    <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(145deg,#E3CB8B,#C9A24B);display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 2px rgba(255,255,255,.4);"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M6 12.5l4 4 8-9" stroke="#1b1500" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                    <div style="width:30px;height:30px;border-radius:50%;border:2px solid #C9A24B;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:.8rem;color:#B5872F;font-weight:600;">3</div>
+                  </div>
+                  <div style="font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;margin-bottom:12px;">Assay icons</div>
+                  <div style="display:flex;gap:16px;color:#23262F;">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3 L20 8 L17 20 L7 20 L4 8 Z" stroke="#C9A24B" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C9A24B" stroke-width="1.6"><path d="M5 9h14l-2 9H7z" stroke-linejoin="round"/><path d="M9 9V6h6v3" stroke-linejoin="round"/></svg>
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C9A24B" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 7v10M9 9.5h4.5a1.5 1.5 0 0 1 0 3H9" stroke-linecap="round"/></svg>
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C9A24B" stroke-width="1.6"><path d="M12 3l7 3v5c0 4.4-3 8-7 10-4-2-7-5.6-7-10V6z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
+                <!-- BUTTONS + PILLS -->
+                <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                  <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;margin:0 0 18px;color:#23262F;">Buttons &amp; pills</h3>
+                  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px;align-items:center;">
+                    <button style="background:linear-gradient(145deg,#E3CB8B,#C9A24B);color:#1b1500;border:none;border-radius:10px;padding:11px 18px;font-family:inherit;font-weight:700;font-size:.88rem;cursor:pointer;box-shadow:0 6px 16px -8px rgba(201,162,75,.8);">Primary</button>
+                    <button style="background:#FFFFFF;color:#23262F;border:1px solid #E7E2D6;border-radius:10px;padding:11px 18px;font-family:inherit;font-weight:600;font-size:.88rem;cursor:pointer;">Secondary</button>
+                    <button style="background:transparent;color:#9B3B2E;border:1px solid rgba(155,59,46,.4);border-radius:10px;padding:11px 18px;font-family:inherit;font-weight:600;font-size:.88rem;cursor:pointer;">Flag</button>
+                  </div>
+                  <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                    <span style="display:inline-flex;align-items:center;gap:5px;font-size:.74rem;font-weight:700;padding:5px 11px;border-radius:999px;background:rgba(59,122,94,.14);color:#3B7A5E;"><span style="width:6px;height:6px;border-radius:50%;background:#3B7A5E;"></span>Clear</span>
+                    <span style="display:inline-flex;align-items:center;gap:5px;font-size:.74rem;font-weight:700;padding:5px 11px;border-radius:999px;background:rgba(155,59,46,.13);color:#9B3B2E;"><span style="width:6px;height:6px;border-radius:50%;background:#9B3B2E;"></span>Flag</span>
+                    <span style="display:inline-flex;align-items:center;gap:5px;font-size:.74rem;font-weight:700;padding:5px 11px;border-radius:999px;background:rgba(201,162,75,.18);color:#B5872F;"><span style="width:6px;height:6px;border-radius:50%;background:#C9A24B;"></span>Warn</span>
+                  </div>
+                </div>
+
+                <!-- INPUTS -->
+                <div style="background:#FFFFFF;border:1px solid #E7E2D6;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(22,24,29,.05);">
+                  <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;margin:0 0 18px;color:#23262F;">Inputs</h3>
+                  <div style="display:flex;flex-direction:column;gap:14px;">
+                    <label><div style="font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;margin-bottom:7px;">Default</div><input value="250" style="width:100%;border:1px solid #E7E2D6;border-radius:10px;padding:11px 13px;font-family:inherit;font-size:.9rem;color:#23262F;background:#FBFAF6;outline:none;"/></label>
+                    <label><div style="font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#9498A2;font-weight:600;margin-bottom:7px;">Focused</div><input value="Rashid Al Maktoum" style="width:100%;border:1px solid #C9A24B;border-radius:10px;padding:11px 13px;font-family:inherit;font-size:.9rem;color:#23262F;background:#FFFFFF;outline:none;box-shadow:0 0 0 3px rgba(201,162,75,.2);"/></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+        </main>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    signedIn: false,
+    mfaStep: false,
+    view: 'dashboard',
+    stage: 1,
+    lang: 'en',
+    dashState: 'normal',
+    custMode: 'list',
+  };
+
+  pill(status){
+    if(status==='clear') return {bg:'rgba(59,122,94,.14)', color:'#3B7A5E'};
+    if(status==='flag')  return {bg:'rgba(155,59,46,.13)', color:'#9B3B2E'};
+    return {bg:'rgba(201,162,75,.18)', color:'#B5872F'};
+  }
+
+  navStyleFor(key){
+    const base='display:flex;align-items:center;gap:12px;width:100%;padding:11px 14px;border-radius:10px;border:none;cursor:pointer;font-family:inherit;font-size:.9rem;font-weight:500;text-align:start;transition:all .18s;';
+    const active=base+'background:#16181D;color:#E3CB8B;box-shadow:inset 3px 0 0 #C9A24B, inset 0 0 0 1px #31353F;';
+    const idle=base+'background:transparent;color:#AFB3BC;';
+    return this.state.view===key ? active : idle;
+  }
+
+  segStyle(active){
+    const base='border:none;cursor:pointer;font-family:inherit;font-size:.78rem;font-weight:600;padding:6px 13px;border-radius:8px;transition:all .15s;';
+    return active ? base+'background:#23262F;color:#E3CB8B;' : base+'background:transparent;color:#6E727C;';
+  }
+  langSeg(active){
+    const base='border:none;cursor:pointer;font-family:inherit;font-size:.8rem;font-weight:600;padding:6px 14px;border-radius:999px;transition:all .15s;';
+    return active ? base+'background:#23262F;color:#E3CB8B;' : base+'background:transparent;color:#6E727C;';
+  }
+
+  renderVals(){
+    const v=this.state.view, ds=this.state.dashState;
+    const rawCases=[
+      {id:'AT-2026-000148', customer:'Rashid A.', item:'250 g · 22K bar', value:'61,400', stage:'3 · Threshold', status:'flag', statusLabel:'Reportable', date:'22 Jun'},
+      {id:'AT-2026-000147', customer:'Mariam S.', item:'120 g · 24K coins', value:'29,800', stage:'2 · KYC / CDD', status:'warn', statusLabel:'In review', date:'22 Jun'},
+      {id:'AT-2026-000146', customer:'Imran K.', item:'500 g · 21K bars', value:'118,650', stage:'5 · Report', status:'flag', statusLabel:'Reportable', date:'21 Jun'},
+      {id:'AT-2026-000145', customer:'Layla H.', item:'40 g · 18K jewellery', value:'7,920', stage:'6 · Complete', status:'clear', statusLabel:'Cleared', date:'21 Jun'},
+      {id:'AT-2026-000144', customer:'Omar B.', item:'310 g · 22K bar', value:'76,140', stage:'4 · Sourcing', status:'warn', statusLabel:'In review', date:'20 Jun'},
+      {id:'AT-2026-000143', customer:'Fatima D.', item:'85 g · 24K bar', value:'21,930', stage:'6 · Complete', status:'clear', statusLabel:'Cleared', date:'20 Jun'},
+    ];
+    const cases=rawCases.map((c,i)=>{const p=this.pill(c.status);return {...c, pillBg:p.bg, pillColor:p.color, rowBg:i%2?'#FBFAF6':'#FFFFFF'};});
+
+    const kpis=[
+      {label:'Cases today', value:'7', sub:'2 awaiting intake', dot:'#6E727C', subColor:'#6E727C'},
+      {label:'Reports pending review', value:'3', sub:'File before end of day', dot:'#C9A24B', subColor:'#B5872F'},
+      {label:'Flagged customers', value:'2', sub:'Risk = high', dot:'#9B3B2E', subColor:'#9B3B2E'},
+      {label:'Filings this month', value:'18', sub:'+4 vs. last month', dot:'#3B7A5E', subColor:'#3B7A5E'},
+    ];
+
+    const pipeRaw=[
+      {n:'1', name:'Intake', count:2, active:false},
+      {n:'2', name:'KYC / CDD', count:1, active:false},
+      {n:'3', name:'Threshold', count:1, active:true},
+      {n:'4', name:'Responsible sourcing', count:1, active:false},
+      {n:'5', name:'goAML report', count:3, active:true},
+      {n:'6', name:'Audit trail', count:9, active:false},
+    ];
+    const pipeline=pipeRaw.map(p=>({
+      n:p.n, name:p.name, count:p.count,
+      bg: p.active?'#F3ECDA':'transparent',
+      nodeBg: p.active?'linear-gradient(145deg,#E3CB8B,#C9A24B)':'#F6F3EC',
+      nodeColor: p.active?'#1b1500':'#9498A2',
+      countColor: p.count>2?'#B5872F':'#6E727C',
+    }));
+
+    // ---- Wizard rail ----
+    const st=this.state.stage;
+    const stageDefs=[
+      {n:1, name:'Intake', desc:'Customer & item'},
+      {n:2, name:'KYC / CDD', desc:'Screening & risk'},
+      {n:3, name:'Threshold', desc:'Reporting check'},
+      {n:4, name:'Sourcing', desc:'OECD due diligence'},
+      {n:5, name:'goAML report', desc:'Draft & review'},
+      {n:6, name:'Audit trail', desc:'Inspection-ready'},
+    ];
+    const rowBase='display:flex;align-items:center;gap:12px;width:100%;border:none;background:transparent;cursor:pointer;font-family:inherit;padding:6px 8px;border-radius:10px;transition:all .15s;';
+    const railStages=stageDefs.map(s=>{
+      const done=s.n<st, active=s.n===st;
+      const nodeStyle = active
+        ? 'width:30px;height:30px;border-radius:50%;background:#FFFFFF;border:2px solid #C9A24B;display:flex;align-items:center;justify-content:center;font-family:\'IBM Plex Mono\',monospace;font-size:.82rem;font-weight:600;color:#B5872F;box-shadow:0 0 0 4px rgba(201,162,75,.16);'
+        : 'width:30px;height:30px;border-radius:50%;background:#F6F3EC;border:1.5px solid #E7E2D6;display:flex;align-items:center;justify-content:center;font-family:\'IBM Plex Mono\',monospace;font-size:.82rem;font-weight:600;color:#9498A2;';
+      return {
+        n:s.n, name:s.name, desc:s.desc, done, notDone:!done,
+        go:()=>this.setState({stage:s.n}),
+        rowStyle: rowBase + (active?'background:#F3ECDA;':''),
+        nodeStyle,
+        nameColor: done?'#23262F':(active?'#B5872F':'#6E727C'),
+      };
+    });
+
+    const auditLog=[
+      {event:'Case created', actor:'Yousef R. · Compliance officer', time:'22 Jun · 10:38', hash:'sha · a3f1', dot:'#3B7A5E'},
+      {event:'Emirates ID scanned — fields extracted', actor:'AI intake', time:'10:39', hash:'sha · 7b2c', dot:'#3B7A5E'},
+      {event:'Screening run — no sanctions / PEP / media match', actor:'AI screening', time:'10:42', hash:'sha · c19d', dot:'#3B7A5E'},
+      {event:'Risk scored — Medium (55 / 100)', actor:'AI risk engine', time:'10:42', hash:'sha · 04e8', dot:'#C9A24B'},
+      {event:'Threshold check — Reportable (AED 91,400)', actor:'System', time:'10:43', hash:'sha · 5fa1', dot:'#9B3B2E'},
+      {event:'Responsible-sourcing checklist completed', actor:'Yousef R.', time:'10:51', hash:'sha · 9d22', dot:'#3B7A5E'},
+      {event:'goAML report drafted', actor:'AI report builder', time:'10:53', hash:'sha · e7b0', dot:'#C9A24B'},
+    ];
+
+    const riskPill=(r)=> r==='Low'?{bg:'rgba(59,122,94,.14)',color:'#3B7A5E'}:(r==='High'?{bg:'rgba(155,59,46,.13)',color:'#9B3B2E'}:{bg:'rgba(201,162,75,.18)',color:'#B5872F'});
+    const custRaw=[
+      {name:'Rashid Al Maktoum', initials:'RA', eid:'784-1987-3456712-9', type:'Resident', cases:4, risk:'Medium', last:'22 Jun'},
+      {name:'Mariam Saleh', initials:'MS', eid:'784-1991-2210034-1', type:'Resident', cases:2, risk:'Low', last:'22 Jun'},
+      {name:'Imran Khan', initials:'IK', eid:'—', type:'Non-resident', cases:5, risk:'High', last:'21 Jun'},
+      {name:'Layla Hassan', initials:'LH', eid:'784-1995-8842190-3', type:'Resident', cases:1, risk:'Low', last:'21 Jun'},
+      {name:'Omar Badawi', initials:'OB', eid:'784-1983-1129970-7', type:'Resident', cases:3, risk:'Medium', last:'20 Jun'},
+      {name:'Fatima Darwish', initials:'FD', eid:'784-1990-5567321-2', type:'Resident', cases:1, risk:'Low', last:'20 Jun'},
+    ];
+    const customers=custRaw.map((c,i)=>{const p=riskPill(c.risk);return {...c, riskBg:p.bg, riskColor:p.color, rowBg:i%2?'#FBFAF6':'#FFFFFF', avBg:'linear-gradient(145deg,#31353F,#16181D)', avColor:'#E3CB8B'};});
+
+    const repRaw=[
+      {id:'AT-2026-000148', type:'DPMSR', customer:'Rashid A.', value:'61,400', status:'Pending review', tone:'warn'},
+      {id:'AT-2026-000146', type:'DPMSR', customer:'Imran K.', value:'118,650', status:'Pending review', tone:'warn'},
+      {id:'AT-2026-000091', type:'DPMSR', customer:'Mariam S.', value:'58,200', status:'Pending review', tone:'warn'},
+      {id:'AT-2025-000418', type:'DPMSR', customer:'Rashid A.', value:'100,500', status:'Filed', tone:'clear'},
+      {id:'AT-2025-001340', type:'STR', customer:'Imran K.', value:'—', status:'Filed', tone:'clear'},
+    ];
+    const reports=repRaw.map((r,i)=>{const p=this.pill(r.tone);return {...r, pillBg:p.bg, pillColor:p.color, rowBg:i%2?'#FBFAF6':'#FFFFFF'};});
+
+    const stageHeadings={1:'Stage 1 · Intake',2:'Stage 2 · KYC / CDD',3:'Stage 3 · Threshold check',4:'Stage 4 · Responsible sourcing',5:'Stage 5 · goAML report',6:'Stage 6 · Audit trail'};
+    const nextBase='border:none;border-radius:10px;padding:11px 20px;font-family:inherit;font-weight:700;font-size:.88rem;cursor:pointer;';
+    const prevBase='border-radius:10px;padding:11px 18px;font-family:inherit;font-weight:600;font-size:.88rem;';
+
+    return {
+      // wizard
+      isNewCase: v==='newcase',
+      stage1: st===1, stage2: st===2, stage3: st===3, stage4: st===4, stage5: st===5, stage6: st===6,
+      stage1en: st===1 && this.state.lang==='en',
+      stage1ar: st===1 && this.state.lang==='ar',
+      stageGt1: st>1,
+      stageNum: st, stageHeading: stageHeadings[st],
+      railStages, auditLog, customers, reports,
+      nextLabel: st>=6 ? 'Close case' : (st===5 ? 'File & continue →' : 'Continue →'),
+      nextStyle: nextBase + 'background:linear-gradient(145deg,#E3CB8B,#C9A24B);color:#1b1500;box-shadow:0 6px 16px -8px rgba(201,162,75,.8);',
+      prevStyle: prevBase + (st<=1 ? 'background:#F6F3EC;color:#C9C4B6;border:1px solid #E7E2D6;cursor:not-allowed;' : 'background:#FFFFFF;color:#23262F;border:1px solid #E7E2D6;cursor:pointer;'),
+      prevStage:()=>this.setState(s=>({stage:Math.max(1,s.stage-1)})),
+      nextStage:()=>this.setState(s=> s.stage>=6 ? {view:'dashboard'} : {stage:s.stage+1}),
+      // customers
+      isCustomers: v==='customers',
+      custList: v==='customers' && this.state.custMode==='list',
+      custProfile: v==='customers' && this.state.custMode==='profile',
+      openCustomer:()=>this.setState({custMode:'profile'}),
+      backToCustomers:()=>this.setState({custMode:'list'}),
+      // other views
+      isReports: v==='reports',
+      isAudit: v==='audit',
+      isSettings: v==='settings',
+      isKit: v==='kit',
+      dirAttr: this.state.lang==='ar' ? 'rtl' : 'ltr',
+      notSignedIn: !this.state.signedIn,
+      signedIn: this.state.signedIn,
+      signinStep1: !this.state.mfaStep,
+      signinStep2: this.state.mfaStep,
+      isDashboard: v==='dashboard',
+      dashEN: v==='dashboard' && this.state.lang==='en',
+      dashAR: v==='dashboard' && this.state.lang==='ar',
+      stIsNormal: ds==='normal', stIsLoading: ds==='loading', stIsEmpty: ds==='empty', stIsError: ds==='error',
+      skeletons:[1,2,3,4,5,6],
+      cases, kpis, pipeline,
+      navStyle:{
+        dashboard:this.navStyleFor('dashboard'), newcase:this.navStyleFor('newcase'),
+        customers:this.navStyleFor('customers'), reports:this.navStyleFor('reports'),
+        audit:this.navStyleFor('audit'), settings:this.navStyleFor('settings'), kit:this.navStyleFor('kit'),
+      },
+      stateStyle:{ normal:this.segStyle(ds==='normal'), empty:this.segStyle(ds==='empty'), loading:this.segStyle(ds==='loading'), error:this.segStyle(ds==='error') },
+      langStyle:{ en:this.langSeg(this.state.lang==='en'), ar:this.langSeg(this.state.lang==='ar') },
+      toMfa:()=>this.setState({mfaStep:true}),
+      backToSignin:()=>this.setState({mfaStep:false}),
+      signIn:()=>this.setState({signedIn:true}),
+      goDashboard:()=>this.setState({view:'dashboard'}),
+      goNewCase:()=>this.setState({view:'newcase', stage:1}),
+      goCustomers:()=>this.setState({view:'customers', custMode:'list'}),
+      goReports:()=>this.setState({view:'reports'}),
+      goAudit:()=>this.setState({view:'audit'}),
+      goSettings:()=>this.setState({view:'settings'}),
+      goKit:()=>this.setState({view:'kit'}),
+      openCase:()=>this.setState({view:'newcase', stage:3}),
+      setEN:()=>this.setState({lang:'en'}),
+      setAR:()=>this.setState({lang:'ar'}),
+      stateNormal:()=>this.setState({dashState:'normal'}),
+      stateEmpty:()=>this.setState({dashState:'empty'}),
+      stateLoading:()=>this.setState({dashState:'loading'}),
+      stateError:()=>this.setState({dashState:'error'}),
+    };
+  }
+}
+</script>
+</body>
+</html>

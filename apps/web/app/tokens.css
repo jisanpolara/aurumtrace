@@ -1,0 +1,88 @@
+/* ============================================================
+   AurumTrace — Design Tokens (Phase 0 source of truth)
+   Mirrors docs/tokens.css. Two surface contexts:
+     • Brand chrome (dark)  → sign-in, sidebar, brand surfaces
+     • Product surfaces (light) → the working app (default)
+   ============================================================ */
+
+:root {
+  /* ---- Brand chrome (dark) ---- */
+  --at-ink:            #16181D;
+  --at-ink-panel:      #23262F;
+  --at-ink-hairline:   #31353F;
+  --at-on-ink:         #E7E9ED;
+  --at-on-ink-muted:   #AFB3BC;
+
+  /* ---- Product surfaces (light) — default app ---- */
+  --at-bg:             #F6F3EC;
+  --at-card:           #FFFFFF;
+  --at-card-alt:       #FBFAF6;
+  --at-hairline:       #E7E2D6;
+  --at-text:           #23262F;
+  --at-text-muted:     #6E727C;
+  --at-text-faint:     #9498A2;
+  --at-hairline-soft:  #F1ECE0;
+
+  /* ---- Accent (gold) — use sparingly ---- */
+  --at-gold:           #C9A24B;
+  --at-gold-light:     #E3CB8B;
+  --at-gold-deep:      #B5872F;
+  --at-gold-wash:      #F3ECDA;
+  --at-gold-gradient:  linear-gradient(145deg, #E3CB8B, #C9A24B);
+  --at-on-gold:        #1b1500;
+
+  /* ---- Semantic status ---- */
+  --at-clear:          #3B7A5E;
+  --at-clear-wash:     rgba(59,122,94,.14);
+  --at-flag:           #9B3B2E;
+  --at-flag-wash:      rgba(155,59,46,.13);
+  --at-warn:           #C9A24B;
+  --at-warn-wash:      rgba(201,162,75,.18);
+
+  /* ---- Typography ---- */
+  --at-font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --at-font-ui:      "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --at-font-mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --at-fs-display: 3.0rem;
+  --at-fs-h1:      1.75rem;
+  --at-fs-h2:      1.30rem;
+  --at-fs-h3:      1.06rem;
+  --at-fs-body:    0.95rem;
+  --at-fs-small:   0.81rem;
+  --at-fs-label:   0.66rem;
+
+  --at-weight-reg: 400;
+  --at-weight-med: 500;
+  --at-weight-semi:600;
+  --at-weight-bold:700;
+  --at-tracking-label: 0.12em;
+  --at-leading-body: 1.5;
+
+  /* ---- Shape ---- */
+  --at-radius-sm:  8px;
+  --at-radius:     12px;
+  --at-radius-lg:  14px;
+  --at-radius-pill:999px;
+
+  /* ---- Spacing scale (4px base) ---- */
+  --at-space-1: 4px;
+  --at-space-2: 8px;
+  --at-space-3: 12px;
+  --at-space-4: 16px;
+  --at-space-5: 24px;
+  --at-space-6: 32px;
+  --at-space-7: 48px;
+
+  /* ---- Elevation (soft, never harsh) ---- */
+  --at-shadow-sm: 0 1px 3px rgba(22,24,29,.08);
+  --at-shadow:    0 8px 24px -12px rgba(22,24,29,.25);
+  --at-shadow-lg: 0 18px 40px -24px rgba(22,24,29,.55);
+
+  /* ---- Focus ring (accessibility) ---- */
+  --at-focus: 0 0 0 2px var(--at-bg), 0 0 0 4px var(--at-gold);
+
+  /* ---- Motion ---- */
+  --at-ease: cubic-bezier(.4, 0, .2, 1);
+  --at-dur:  .18s;
+}
