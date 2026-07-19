@@ -12,15 +12,21 @@ services:
     plan: free
     region: singapore # closest free region to the UAE (Render has no ME region)
     branch: main
+    # Render's /usr is read-only, so `corepack enable` can't symlink pnpm there.
+    # Install pnpm into a writable home dir instead, then build shared + api.
     buildCommand: >-
-      corepack enable &&
-      corepack prepare pnpm@9.15.0 --activate &&
-      pnpm install --frozen-lockfile &&
+      npm config set prefix "$HOME/.npm-global" &&
+      export PATH="$HOME/.npm-global/bin:$PATH" &&
+      npm install -g pnpm@9.15.0 &&
+      pnpm install --frozen-lockfile --prod=false &&
       pnpm --filter @aurumtrace/shared build &&
+      pnpm --filter @aurumtrace/integrations build &&
       pnpm --filter @aurumtrace/api build
     startCommand: node apps/api/dist/main.js
     healthCheckPath: /health
     envVars:
+      - key: NODE_VERSION
+        value: "20.18.1" # pin to stable LTS (avoid Render's latest, e.g. Node 26)
       - key: NODE_ENV
         value: production
       - key: DEMO_MODE
