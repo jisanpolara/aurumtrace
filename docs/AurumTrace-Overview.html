@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AurumTrace — Product Overview</title>
+<style>
+  :root{
+    --ink:#16181D; --panel:#23262F; --ink-hair:#31353F; --on-ink:#E7E9ED; --on-ink-muted:#AFB3BC;
+    --bg:#F6F3EC; --card:#FFFFFF; --card-alt:#FBFAF6; --hair:#E7E2D6;
+    --text:#23262F; --muted:#6E727C; --faint:#9498A2;
+    --gold:#C9A24B; --gold-light:#E3CB8B; --gold-deep:#B5872F; --gold-wash:#F3ECDA;
+    --grad:linear-gradient(145deg,#E3CB8B,#C9A24B);
+    --clear:#3B7A5E; --flag:#9B3B2E;
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  @page{size:A4;margin:0;}
+  html,body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+  .page{width:210mm;min-height:297mm;background:var(--bg);display:flex;flex-direction:column;page-break-after:always;position:relative;overflow:hidden;}
+  .page:last-child{page-break-after:auto;}
+  .pad{padding:16mm 16mm 0;}
+
+  /* ---------- hero ---------- */
+  .hero{background:var(--ink);color:var(--on-ink);padding:15mm 16mm 12mm;position:relative;}
+  .hero::after{content:"";position:absolute;left:16mm;right:16mm;bottom:9mm;height:2px;background:var(--grad);opacity:.9;}
+  .brandrow{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+  .stamp{width:34px;height:34px;border-radius:9px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:var(--ink);font-weight:800;font-size:18px;box-shadow:0 6px 18px -6px rgba(201,162,75,.5);}
+  .wordmark{font-family:var(--serif);font-size:30px;font-weight:700;letter-spacing:.2px;}
+  .wordmark .t{color:var(--gold);}
+  .kicker{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light);margin-bottom:6px;}
+  .hero h1{font-family:var(--serif);font-weight:600;font-size:27px;line-height:1.18;max-width:150mm;margin-bottom:9px;}
+  .hero p{color:var(--on-ink-muted);font-size:12.5px;line-height:1.55;max-width:150mm;}
+  .tagbar{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;}
+  .tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-ink);border:1px solid var(--ink-hair);border-radius:999px;padding:5px 11px;}
+
+  /* ---------- sections ---------- */
+  h2{font-family:var(--serif);font-weight:600;font-size:16px;color:var(--text);margin-bottom:3px;}
+  .lede{font-size:12.5px;line-height:1.6;color:var(--text);max-width:172mm;}
+  .label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;margin-bottom:9px;}
+  .muted{color:var(--muted);}
+  section{margin-top:11mm;}
+  section.first{margin-top:9mm;}
+
+  /* ---------- stage rail ---------- */
+  .stages{display:flex;flex-direction:column;gap:8px;margin-top:9px;}
+  .stage{display:flex;align-items:flex-start;gap:13px;background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:11px 14px;}
+  .node{flex:none;width:27px;height:27px;border-radius:50%;background:var(--grad);color:var(--ink);font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+  .stage h3{font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:1px;}
+  .stage p{font-size:11px;line-height:1.45;color:var(--muted);}
+
+  /* ---------- benefit grid ---------- */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:9px;}
+  .card{background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:13px 15px;}
+  .card .ic{width:22px;height:22px;border-radius:6px;background:var(--gold-wash);color:var(--gold-deep);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;margin-bottom:7px;}
+  .card h3{font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px;}
+  .card p{font-size:10.7px;line-height:1.5;color:var(--muted);}
+
+  /* ---------- trust ---------- */
+  .trust{background:var(--card-alt);border:1px solid var(--hair);border-radius:14px;padding:15px 18px;margin-top:9px;}
+  .trust ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:9px 22px;}
+  .trust li{display:flex;gap:9px;font-size:11px;line-height:1.45;}
+  .trust .chk{flex:none;color:var(--clear);font-weight:800;}
+  .trust b{color:var(--text);}
+
+  /* ---------- CTA ---------- */
+  .cta{margin-top:11mm;background:var(--gold-wash);border:1px solid #E7D9B6;border-radius:14px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .cta .l h2{margin-bottom:2px;}
+  .cta .l p{font-size:11px;color:var(--muted);}
+  .cta .url{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink);background:#fff;border:1px solid #E7D9B6;border-radius:10px;padding:10px 14px;white-space:nowrap;}
+
+  /* ---------- footer ---------- */
+  .foot{margin-top:auto;padding:8mm 16mm 9mm;}
+  .foot .rule{height:1px;background:var(--hair);margin-bottom:9px;}
+  .foot .meta{display:flex;justify-content:space-between;align-items:baseline;font-size:10px;color:var(--muted);}
+  .foot .meta .wm{font-family:var(--serif);color:var(--text);font-weight:600;}
+  .foot .meta .wm .t{color:var(--gold-deep);}
+  .fineprint{margin-top:7px;font-size:8.6px;line-height:1.5;color:var(--faint);max-width:178mm;}
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1 ================= -->
+<div class="page">
+  <div class="hero">
+    <div class="brandrow">
+      <div class="stamp">&#10003;</div>
+      <div class="wordmark">Aurum<span class="t">Trace</span></div>
+    </div>
+    <div class="kicker">Product Overview</div>
+    <h1>AML compliance for the UAE gold trade — one guided, inspection-ready workflow.</h1>
+    <p>AurumTrace helps precious-metals dealers meet their DPMS anti-money-laundering
+       obligations end to end: know-your-customer checks, transaction reporting, responsible-sourcing
+       due diligence and goAML filing — turning a fragmented, manual burden into a single calm process.</p>
+    <div class="tagbar">
+      <span class="tag">DPMS</span><span class="tag">goAML</span><span class="tag">KYC / CDD</span>
+      <span class="tag">Responsible sourcing</span><span class="tag">English &amp; العربية</span>
+    </div>
+  </div>
+
+  <div class="pad">
+    <section class="first">
+      <div class="label">The challenge</div>
+      <p class="lede">Gold and precious-metals dealers must screen customers, value and record every dealing,
+        judge which transactions are reportable, evidence where their gold came from, and file to the regulator —
+        accurately, in two languages, and ready for inspection at any time. Done by hand across spreadsheets and
+        emails, it is slow, error-prone and hard to defend.</p>
+    </section>
+
+    <section>
+      <div class="label">One workflow · six stages</div>
+      <h2>From counter to filing, every step guided and recorded</h2>
+      <div class="stages">
+        <div class="stage"><div class="node">1</div><div><h3>Intake &amp; valuation</h3><p>Capture the item and customer and value the gold live against the current market price — to AED precision.</p></div></div>
+        <div class="stage"><div class="node">2</div><div><h3>KYC / CDD screening</h3><p>Screen the customer against sanctions, PEP and adverse-media lists and score their risk automatically.</p></div></div>
+        <div class="stage"><div class="node">3</div><div><h3>Threshold check</h3><p>Detect reportable transactions and aggregate linked dealings so nothing that should be reported is missed.</p></div></div>
+        <div class="stage"><div class="node">4</div><div><h3>Responsible sourcing</h3><p>Record OECD five-step supply-chain due diligence and store supporting documents, encrypted.</p></div></div>
+        <div class="stage"><div class="node">5</div><div><h3>goAML report</h3><p>Generate a ready-to-file goAML report draft for the compliance officer to review.</p></div></div>
+        <div class="stage"><div class="node">6</div><div><h3>Audit trail</h3><p>Every action is captured in a tamper-evident, inspection-ready record of who did what, and when.</p></div></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="foot">
+    <div class="rule"></div>
+    <div class="meta"><span class="wm">Aurum<span class="t">Trace</span></span><span>Product Overview · page 1 of 2</span></div>
+  </div>
+</div>
+
+<!-- ================= PAGE 2 ================= -->
+<div class="page">
+  <div class="pad">
+    <section class="first">
+      <div class="label">What it does</div>
+      <h2>Capability at a glance</h2>
+      <div class="grid">
+        <div class="card"><div class="ic">$</div><h3>Live gold valuation</h3><p>Every item priced against the current market rate, computed in exact minor units — no rounding drift.</p></div>
+        <div class="card"><div class="ic">!</div><h3>Automatic reporting threshold</h3><p>Flags cash transactions at or above the reporting threshold and aggregates linked dealings automatically.</p></div>
+        <div class="card"><div class="ic">&#9673;</div><h3>Sanctions &amp; PEP screening</h3><p>Checks customers against UN, OFAC, UK, EU and UAE local lists, plus adverse-media scanning.</p></div>
+        <div class="card"><div class="ic">&#128274;</div><h3>Encrypted document vault</h3><p>Identity documents and source declarations stored with bank-grade encryption.</p></div>
+        <div class="card"><div class="ic">&#127760;</div><h3>Bilingual &amp; inspection-ready</h3><p>Full English and Arabic with right-to-left layouts — built for the counter, the officer and the auditor.</p></div>
+        <div class="card"><div class="ic">&#10003;</div><h3>Human-in-the-loop filing</h3><p>AurumTrace prepares the report; a compliance officer always reviews and files. Nothing is submitted automatically.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">Built for trust</div>
+      <h2>Defensible by design</h2>
+      <div class="trust">
+        <ul>
+          <li><span class="chk">&#10003;</span><span><b>Per-dealer data isolation</b> — enforced in the database itself, not just the app, so one dealer can never see another's data.</span></li>
+          <li><span class="chk">&#10003;</span><span><b>Tamper-evident audit log</b> — cryptographically chained; historical records cannot be altered or deleted.</span></li>
+          <li><span class="chk">&#10003;</span><span><b>Encrypted end to end</b> — documents encrypted at rest, all traffic secured in transit.</span></li>
+          <li><span class="chk">&#10003;</span><span><b>A human decides every filing</b> — no automated submission to the regulator, ever.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="cta">
+        <div class="l"><h2>See it live</h2><p>Explore the full six-stage workflow in an interactive demo.</p></div>
+        <div class="url">app.aurumtrace.com</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="foot">
+    <div class="rule"></div>
+    <div class="meta">
+      <span class="wm">Aurum<span class="t">Trace</span></span>
+      <span>Prepared by E-Web Marketing · jisan@ewebmarketing.com.au · July 2026</span>
+    </div>
+    <p class="fineprint">Demonstration build populated with fictional sample data. Regulatory parameters — cash-reporting
+      thresholds, aggregation windows and the goAML field mapping — are confirmed with a licensed compliance advisor
+      before any production use. AurumTrace supports the compliance officer's judgement and does not constitute legal
+      or regulatory advice.</p>
+  </div>
+</div>
+
+</body>
+</html>
