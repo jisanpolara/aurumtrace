@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AurumTrace — AI compliance infrastructure for the gold trade</title>
+<meta name="description" content="AurumTrace is an AI compliance copilot for UAE gold and precious-metals dealers — KYC, transaction reporting, responsible-sourcing due diligence and goAML filing in one audit-ready workflow." />
+<meta property="og:title" content="AurumTrace — AI compliance for the gold trade" />
+<meta property="og:description" content="KYC, transaction reporting, responsible-sourcing due diligence and goAML filing in one audit-ready workflow for UAE gold dealers." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://aurumtrace.com/" />
+<meta property="og:image" content="https://aurumtrace.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AurumTrace — AI compliance for the gold trade" />
+<meta name="twitter:description" content="KYC, transaction reporting, responsible-sourcing due diligence and goAML filing in one audit-ready workflow for UAE gold dealers." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Ccircle%20cx='16'%20cy='16'%20r='16'%20fill='%23C9A24B'/%3E%3Cpath%20d='M16%206l2.6%205.8%206.4.6-4.7%204.3%201.3%206.3L16%2020.8%2010.4%2024l1.3-6.3L7%2013.4l6.4-.6z'%20fill='%2316181D'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16181D; --ink2:#1D2027; --panel:#23262F; --line:#31353F;
+    --gold:#C9A24B; --gold-lt:#E3CB8B; --gold-deep:#B5872F;
+    --paper:#F6F3EC; --on-ink:#E7E9ED; --mute:#9498A2; --mute-d:#6E727C;
+    --brick:#9B3B2E;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:"Inter",system-ui,sans-serif;background:var(--ink);color:var(--on-ink);
+    -webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .serif{font-family:"Fraunces",serif}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);
+    background:rgba(22,24,29,.78);border-bottom:1px solid var(--line)}
+  nav .row{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:11px}
+  .seal{width:34px;height:34px;border-radius:50%;background:linear-gradient(145deg,var(--gold-lt),var(--gold));
+    display:grid;place-items:center;flex:none;box-shadow:0 3px 10px rgba(0,0,0,.4)}
+  .seal svg{width:17px;height:17px}
+  .wm{font-family:"Fraunces",serif;font-weight:700;font-size:21px;letter-spacing:.3px}
+  .wm .t{color:var(--gold)}
+  .navlinks{display:flex;align-items:center;gap:26px;font-size:14px;color:var(--mute)}
+  .navlinks a:hover{color:var(--on-ink)}
+  .navcta{font-weight:600;font-size:13.5px;color:#1b1500;background:linear-gradient(145deg,var(--gold-lt),var(--gold));
+    padding:9px 15px;border-radius:9px}
+  .navcta:hover{filter:brightness(1.05)}
+  @media(max-width:720px){
+    .navlinks a:not(.navcta){display:none}
+    .wm{font-size:18px}
+    .navcta{padding:8px 12px;font-size:12.5px}
+    nav .row{height:58px}
+  }
+
+  /* hero */
+  .hero{position:relative;padding:96px 0 84px;overflow:hidden}
+  .hero:before{content:"";position:absolute;width:780px;height:780px;right:-260px;top:-320px;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,162,75,.16),transparent 62%);pointer-events:none}
+  .hero:after{content:"";position:absolute;width:520px;height:520px;left:-220px;bottom:-280px;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,162,75,.08),transparent 60%);pointer-events:none}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--gold);font-weight:700;border:1px solid var(--line);border-radius:99px;padding:6px 14px;margin-bottom:24px}
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+  h1{font-family:"Fraunces",serif;font-weight:700;font-size:clamp(38px,6.2vw,72px);line-height:1.04;margin:0;
+    letter-spacing:.5px}
+  h1 .t{color:var(--gold)}
+  .lede{font-size:clamp(17px,2.2vw,21px);color:#C7CAD2;max-width:40ch;margin:22px 0 6px;font-family:"Fraunces",serif;
+    font-style:italic;font-weight:500}
+  .sub{font-size:16px;color:var(--mute);max-width:56ch;margin:14px 0 34px;line-height:1.6}
+  .cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .btn{font-weight:600;font-size:15px;border-radius:11px;padding:13px 22px;cursor:pointer;transition:.15s;
+    border:1px solid var(--line);background:transparent;color:var(--on-ink)}
+  .btn:hover{border-color:#4a505d}
+  .btn.primary{background:linear-gradient(145deg,var(--gold-lt),var(--gold));color:#1b1500;border-color:transparent}
+  .btn.primary:hover{filter:brightness(1.06)}
+
+  /* stat strip */
+  .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--ink2)}
+  .stats .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .stat{padding:30px 24px;border-left:1px solid var(--line)}
+  .stat:first-child{border-left:0}
+  .stat .n{font-family:"Fraunces",serif;font-weight:700;font-size:30px;color:var(--gold)}
+  .stat .l{font-size:13px;color:var(--mute);margin-top:6px;line-height:1.45}
+  @media(max-width:720px){.stats .grid{grid-template-columns:1fr}.stat{border-left:0;border-top:1px solid var(--line)}.stat:first-child{border-top:0}}
+
+  /* sections */
+  section.block{padding:80px 0}
+  .tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px}
+  h2{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(26px,3.6vw,38px);line-height:1.12;margin:0 0 16px}
+  .lead{font-size:17px;color:#C7CAD2;max-width:62ch;line-height:1.6}
+
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:38px}
+  @media(max-width:720px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--ink2);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .card .ic{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;
+    background:rgba(201,162,75,.13);border:1px solid rgba(201,162,75,.28);margin-bottom:16px}
+  .card .ic svg{width:21px;height:21px}
+  .card h3{font-size:17px;margin:0 0 7px;font-weight:600}
+  .card p{font-size:14px;color:var(--mute);margin:0;line-height:1.55}
+
+  .why{background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+  /* CTA band */
+  .band{padding:74px 0;text-align:center;position:relative;overflow:hidden}
+  .band:before{content:"";position:absolute;width:680px;height:680px;left:50%;top:-340px;transform:translateX(-50%);
+    border-radius:50%;background:radial-gradient(circle,rgba(201,162,75,.12),transparent 62%);pointer-events:none}
+  .band h2{margin-bottom:14px}
+  .band p{color:var(--mute);max-width:52ch;margin:0 auto 28px;font-size:16px}
+
+  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--mute-d);font-size:13px}
+  footer .row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer a:hover{color:var(--on-ink)}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap row">
+    <a class="brand" href="#top" aria-label="AurumTrace home">
+      <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l2.6 5.8L21 8.4l-4.7 4.3L17.6 19 12 15.8 6.4 19l1.3-6.3L3 8.4l6.4-.6L12 2z" fill="#1b1500"/></svg></span>
+      <span class="wm">Aurum<span class="t">Trace</span></span>
+    </a>
+    <div class="navlinks">
+      <a href="#how">How it works</a>
+      <a href="#why">Why now</a>
+      <a href="#contact" class="navcta">Request early access</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span> For UAE gold &amp; precious-metals dealers</span>
+    <h1>Compliance,<br>in one <span class="t">workflow</span>.</h1>
+    <p class="lede">AI compliance infrastructure for the gold trade.</p>
+    <p class="sub">AurumTrace turns the new UAE AML obligations — KYC, transaction reporting, responsible-sourcing due diligence and goAML filing — into a single, guided, audit-ready workflow. Built for dealers, not banks.</p>
+    <div class="cta">
+      <a class="btn primary" href="#contact">Request early access</a>
+      <a class="btn" href="https://app.aurumtrace.com">Try the live demo →</a>
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="grid">
+      <div class="stat"><div class="n">8,191</div><div class="l">precious-metals dealers now regulated on the UAE's goAML system</div></div>
+      <div class="stat"><div class="n">AED 55,000</div><div class="l">the transaction threshold above which a report is required</div></div>
+      <div class="stat"><div class="n">up to AED 5M</div><div class="l">in penalties per violation, with active enforcement</div></div>
+    </div>
+  </div>
+</div>
+
+<section class="block" id="how">
+  <div class="wrap">
+    <div class="tag reveal">What it does</div>
+    <h2 class="reveal">Four AI engines, one compliance pipeline</h2>
+    <p class="lead reveal">Every gold transaction flows through a single guided process — the dealer sees a simple workflow; the obligation is handled underneath.</p>
+    <div class="cards">
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#C9A24B" stroke-width="1.6"/><circle cx="8.5" cy="11" r="2" stroke="#C9A24B" stroke-width="1.6"/><path d="M13 10h5M13 13h5" stroke="#C9A24B" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <h3>KYC &amp; due diligence</h3>
+        <p>Scan an ID, auto-extract the details, and screen against sanctions, PEP and adverse-media lists with a clear risk score.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5M4 19h16M7 15l3-4 3 2 4-6" stroke="#C9A24B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Transaction reporting</h3>
+        <p>Automatically test the AED 55,000 threshold — including the linked transactions that are easy to miss — and flag what must be reported.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#C9A24B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="#C9A24B" stroke-width="1.6"/></svg></div>
+        <h3>Responsible sourcing</h3>
+        <p>Capture the source of the gold and walk the OECD five-step due-diligence process required under Ministerial Decree 68 of 2024.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7zM14 3v4h4" stroke="#C9A24B" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 13h5M10 16h5" stroke="#C9A24B" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <h3>goAML filing, drafted</h3>
+        <p>Generate a filing-ready report with a plain-language narrative. You review and submit — nothing is filed automatically.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block why" id="why">
+  <div class="wrap">
+    <div class="tag reveal">Why now</div>
+    <h2 class="reveal">The rules changed — the tools didn't</h2>
+    <p class="lead reveal">The UAE is the world's second-largest gold trading hub, and its compliance regime was rebuilt in 2024–2025. Ministerial Decree 68 extended responsible-sourcing duties to everyone who trades or handles gold, penalties run to seven figures, and enforcement is active. Yet most dealers still manage all of it on spreadsheets and consultants. AurumTrace is built for exactly that gap.</p>
+  </div>
+</section>
+
+<section class="band" id="contact">
+  <div class="wrap">
+    <h2>Be an early design partner</h2>
+    <p>We're looking to partner with a small group of UAE dealers to shape AurumTrace before launch. If that's you, we'd like to talk.</p>
+    <a class="btn primary" href="mailto:hello@aurumtrace.com?subject=AurumTrace%20early%20access">Request early access</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap row">
+    <span class="brand"><span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l2.6 5.8L21 8.4l-4.7 4.3L17.6 19 12 15.8 6.4 19l1.3-6.3L3 8.4l6.4-.6L12 2z" fill="#1b1500"/></svg></span>
+      <span class="wm" style="font-size:18px">Aurum<span class="t">Trace</span></span></span>
+    <span>hello@aurumtrace.com</span>
+    <span>&copy; <span id="yr"></span> AurumTrace</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
