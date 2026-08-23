@@ -3,8 +3,8 @@ import { Sidebar } from "@/components/shell/Sidebar";
 import { Topbar } from "@/components/shell/Topbar";
 import { hasSession, isDemoMode } from "@/lib/session";
 
-export default function AppLayout({ children }: { children: React.ReactNode }) {
-  if (!hasSession()) redirect("/sign-in");
+export default async function AppLayout({ children }: { children: React.ReactNode }) {
+  if (!(await hasSession())) redirect("/sign-in");
   const demo = isDemoMode();
 
   return (

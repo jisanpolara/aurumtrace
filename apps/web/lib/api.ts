@@ -7,13 +7,27 @@
  * (TODO once web sessions are wired). When NEXT_PUBLIC_API_URL is unset, callers
  * fall back to mock data so the UI still runs.
  */
+import { isSupabaseAuth } from "./supabase/config";
+import { createSupabaseServerClient } from "./supabase/server";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export function apiConfigured(): boolean {
   return Boolean(API_URL);
 }
 
-function authHeaders(): Record<string, string> {
+/**
+ * Auth for server-side API calls. With Supabase auth, attach the user's access
+ * token as a Bearer (the API verifies it and derives tenant + role). In local
+ * dev, fall back to x-debug-* headers. In DEMO_MODE the API ignores both.
+ */
+async function authHeaders(): Promise<Record<string, string>> {
+  if (isSupabaseAuth()) {
+    const supabase = createSupabaseServerClient();
+    const { data } = await supabase.auth.getSession();
+    const token = data.session?.access_token;
+    return token ? { authorization: `Bearer ${token}` } : {};
+  }
   const user = process.env.AT_DEV_USER;
   const tenant = process.env.AT_DEV_TENANT;
   if (user && tenant) {
@@ -30,7 +44,7 @@ export async function apiGet<T>(path: string): Promise<T | null> {
   if (!API_URL) return null;
   try {
     const res = await fetch(`${API_URL}${path}`, {
-      headers: authHeaders(),
+      headers: await authHeaders(),
       cache: "no-store",
     });
     if (!res.ok) return null;
@@ -44,7 +58,7 @@ export async function apiPost<T>(path: string, body: unknown): Promise<T> {
   if (!API_URL) throw new Error("API not configured (NEXT_PUBLIC_API_URL)");
   const res = await fetch(`${API_URL}${path}`, {
     method: "POST",
-    headers: { ...authHeaders(), "content-type": "application/json" },
+    headers: { ...(await authHeaders()), "content-type": "application/json" },
     body: JSON.stringify(body),
     cache: "no-store",
   });
