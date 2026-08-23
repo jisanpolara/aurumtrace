@@ -1,5 +1,6 @@
 import { Global, Module } from "@nestjs/common";
 import {
+  AnthropicLlmAdapter,
   HttpGoldPriceAdapter,
   HttpScreeningAdapter,
   MockGoldPriceAdapter,
@@ -14,9 +15,9 @@ export const SCREENING = Symbol("SCREENING");
 export const LLM = Symbol("LLM");
 
 /**
- * Wires the provider adapters. Mocks by default; the gold-price adapter uses
- * the real HTTP impl when GOLD_PRICE_URL is configured. OCR/screening/LLM stay
- * mocked until their own modules (Steps 4/6/8).
+ * Wires the provider adapters. Mocks by default; each swaps to its real impl
+ * when configured: gold price (GOLD_PRICE_URL), screening (SCREENING_URL),
+ * LLM (ANTHROPIC_API_KEY → Claude). OCR stays mocked pending a vendor choice.
  */
 @Global()
 @Module({
@@ -39,7 +40,13 @@ export const LLM = Symbol("LLM");
             })
           : new MockScreeningAdapter(),
     },
-    { provide: LLM, useValue: new MockLlmAdapter() },
+    {
+      provide: LLM,
+      useFactory: () =>
+        process.env.ANTHROPIC_API_KEY
+          ? new AnthropicLlmAdapter()
+          : new MockLlmAdapter(),
+    },
   ],
   exports: [GOLD_PRICE, OCR, SCREENING, LLM],
 })

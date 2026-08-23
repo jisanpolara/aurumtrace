@@ -112,6 +112,8 @@ describe("Intake (HTTP e2e against PGlite)", () => {
           transactionType: "buy_from_customer",
         },
       })
-      .expect(500); // RLS WITH CHECK rejects the insert
+      // RolesGuard rejects the auditor at the guard (defence-in-depth) before the
+      // request reaches the DB; RLS WITH CHECK remains the backstop at the data layer.
+      .expect(403);
   });
 });

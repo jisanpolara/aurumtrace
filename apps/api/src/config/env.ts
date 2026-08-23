@@ -37,6 +37,10 @@ const EnvSchema = z.object({
   GOLD_PRICE_URL: z.string().url().optional(),
   SCREENING_URL: z.string().url().optional(),
   SCREENING_API_KEY: z.string().min(1).optional(),
+  // LLM (Anthropic Claude). When set, goAML narratives use the real model;
+  // ANTHROPIC_MODEL optionally overrides the default (e.g. a cheaper model).
+  ANTHROPIC_API_KEY: z.string().min(1).optional(),
+  ANTHROPIC_MODEL: z.string().min(1).optional(),
   // Advisor-confirmed reporting policy (provisional fallback used when unset).
   DPMS_THRESHOLD_FILS: z.coerce.number().int().positive().optional(),
   DPMS_AGG_WINDOW_DAYS: z.coerce.number().int().positive().optional(),

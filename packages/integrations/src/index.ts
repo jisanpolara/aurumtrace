@@ -15,7 +15,8 @@ export * from "./screening/types";
 export { MockScreeningAdapter } from "./screening/mock";
 export { HttpScreeningAdapter, type HttpScreeningConfig } from "./screening/http";
 
-// LLM (mock; real provider later) + the PII guardrail every adapter must use
+// LLM (mock + real Anthropic Claude) + the PII guardrail every adapter must use
 export * from "./llm/types";
 export * from "./llm/pii-guard";
 export { MockLlmAdapter } from "./llm/mock";
+export { AnthropicLlmAdapter, type AnthropicLlmConfig } from "./llm/anthropic";
