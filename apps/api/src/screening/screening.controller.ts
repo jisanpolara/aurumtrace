@@ -1,10 +1,13 @@
 import { Controller, Param, ParseUUIDPipe, Post, UseGuards } from "@nestjs/common";
 import { AuthGuard } from "../common/auth/auth.guard";
+import { RolesGuard } from "../common/auth/roles.guard";
+import { Roles } from "../common/auth/roles.decorator";
 import { CurrentPrincipal, type Principal } from "../common/principal";
 import { ScreeningService, type ScreeningRunResult } from "./screening.service";
 
 @Controller("cases")
-@UseGuards(AuthGuard)
+@UseGuards(AuthGuard, RolesGuard)
+@Roles("owner", "compliance_officer", "staff")
 export class ScreeningController {
   constructor(private readonly screening: ScreeningService) {}
 

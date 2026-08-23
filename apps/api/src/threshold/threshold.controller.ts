@@ -1,11 +1,14 @@
 import { Controller, Param, ParseUUIDPipe, Post, UseGuards } from "@nestjs/common";
 import { AuthGuard } from "../common/auth/auth.guard";
+import { RolesGuard } from "../common/auth/roles.guard";
+import { Roles } from "../common/auth/roles.decorator";
 import { CurrentPrincipal, type Principal } from "../common/principal";
 import { ThresholdService } from "./threshold.service";
 import type { ReportabilityResult } from "./threshold-engine";
 
 @Controller("cases")
-@UseGuards(AuthGuard)
+@UseGuards(AuthGuard, RolesGuard)
+@Roles("owner", "compliance_officer", "staff")
 export class ThresholdController {
   constructor(private readonly threshold: ThresholdService) {}
 

@@ -12,6 +12,7 @@ const MIGRATIONS = [
   "0005_domain_rls.sql",
   "0006_audit_case_id.sql",
   "0007_case_occurred_at.sql",
+  "0008_access_token_hook.sql",
 ];
 
 /**

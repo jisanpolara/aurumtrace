@@ -3,7 +3,13 @@ import { z } from "zod";
 const EnvSchema = z.object({
   DATABASE_URL: z.string().min(1),
   DB_APP_ROLE: z.string().min(1).default("authenticated"),
-  SUPABASE_JWT_SECRET: z.string().min(1),
+  // Supabase access-token verification. Newer projects sign tokens with
+  // asymmetric keys — verify via the project JWKS endpoint (preferred). Older
+  // projects use a shared HS256 secret. Provide whichever the project uses.
+  SUPABASE_JWKS_URL: z.string().url().optional(),
+  SUPABASE_JWT_SECRET: z.string().min(1).optional(),
+  // Optional issuer to pin (e.g. https://<ref>.supabase.co/auth/v1).
+  SUPABASE_JWT_ISSUER: z.string().url().optional(),
   AUTH_DEV_MODE: z
     .enum(["true", "false"])
     .default("false")
@@ -62,6 +68,13 @@ export function loadEnv(): Env {
   // DEMO_MODE binds every request to one tenant, so that tenant must be named.
   if (parsed.data.DEMO_MODE && !parsed.data.DEMO_TENANT_ID) {
     throw new Error("DEMO_MODE requires DEMO_TENANT_ID (the demo tenant uuid)");
+  }
+  // Real auth (not demo, not dev headers) needs a way to verify Supabase tokens.
+  const realAuth = !parsed.data.DEMO_MODE && !parsed.data.AUTH_DEV_MODE;
+  if (realAuth && !parsed.data.SUPABASE_JWKS_URL && !parsed.data.SUPABASE_JWT_SECRET) {
+    throw new Error(
+      "Real auth requires SUPABASE_JWKS_URL (asymmetric keys) or SUPABASE_JWT_SECRET (legacy HS256)",
+    );
   }
   cached = parsed.data;
   return cached;

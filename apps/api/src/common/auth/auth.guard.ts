@@ -4,10 +4,38 @@ import {
   Injectable,
   UnauthorizedException,
 } from "@nestjs/common";
-import { jwtVerify } from "jose";
+import { jwtVerify, createRemoteJWKSet, type JWTPayload } from "jose";
 import { Principal } from "@aurumtrace/shared";
-import { loadEnv } from "../../config/env";
+import { loadEnv, type Env } from "../../config/env";
 import type { RequestWithPrincipal } from "../principal";
+
+/** Cached remote JWKS (recreated only if the configured URL changes). */
+let cachedJwks: ReturnType<typeof createRemoteJWKSet> | undefined;
+let cachedJwksUrl: string | undefined;
+function jwksFor(url: string): ReturnType<typeof createRemoteJWKSet> {
+  if (!cachedJwks || cachedJwksUrl !== url) {
+    cachedJwks = createRemoteJWKSet(new URL(url));
+    cachedJwksUrl = url;
+  }
+  return cachedJwks;
+}
+
+/**
+ * Resolve the Principal from verified JWT claims. Our tenant + role ride in the
+ * custom claims `tenant_id` and `app_role` (injected by the Supabase custom
+ * access-token hook — see migration 0008). We deliberately do NOT read the
+ * top-level `role` claim: Supabase reserves it for the Postgres role
+ * (`authenticated`), so overloading it would break PostgREST/RLS.
+ */
+function principalFromClaims(payload: JWTPayload): Principal | null {
+  const meta = (payload["app_metadata"] ?? {}) as Record<string, unknown>;
+  const parsed = Principal.safeParse({
+    userId: payload.sub,
+    tenantId: payload["tenant_id"] ?? meta["tenant_id"],
+    role: payload["app_role"] ?? meta["app_role"] ?? meta["role"],
+  });
+  return parsed.success ? parsed.data : null;
+}
 
 /**
  * Resolves the request Principal from a verified Supabase access token.
@@ -33,7 +61,7 @@ export class AuthGuard implements CanActivate {
     } else if (env.AUTH_DEV_MODE) {
       principal = this.fromDebugHeaders(req);
     } else {
-      principal = await this.fromBearer(req, env.SUPABASE_JWT_SECRET);
+      principal = await this.fromBearer(req, env);
     }
 
     if (!principal) throw new UnauthorizedException();
@@ -61,23 +89,31 @@ export class AuthGuard implements CanActivate {
 
   private async fromBearer(
     req: RequestWithPrincipal,
-    secret: string,
+    env: Env,
   ): Promise<Principal | null> {
     const auth = header(req, "authorization");
     if (!auth?.startsWith("Bearer ")) return null;
+    const token = auth.slice("Bearer ".length);
+    const opts = env.SUPABASE_JWT_ISSUER ? { issuer: env.SUPABASE_JWT_ISSUER } : {};
     try {
-      const { payload } = await jwtVerify(
-        auth.slice("Bearer ".length),
-        new TextEncoder().encode(secret),
-        // Pin the algorithm — never let a token select a weaker/unexpected alg.
-        { algorithms: ["HS256"] },
-      );
-      const parsed = Principal.safeParse({
-        userId: payload.sub,
-        tenantId: payload["tenant_id"],
-        role: payload["role"],
-      });
-      return parsed.success ? parsed.data : null;
+      let payload: JWTPayload;
+      if (env.SUPABASE_JWKS_URL) {
+        // Preferred: asymmetric keys via the project JWKS endpoint.
+        ({ payload } = await jwtVerify(token, jwksFor(env.SUPABASE_JWKS_URL), {
+          algorithms: ["ES256", "RS256"],
+          ...opts,
+        }));
+      } else if (env.SUPABASE_JWT_SECRET) {
+        // Legacy: shared HS256 secret. Pin the alg — never let a token pick one.
+        ({ payload } = await jwtVerify(
+          token,
+          new TextEncoder().encode(env.SUPABASE_JWT_SECRET),
+          { algorithms: ["HS256"], ...opts },
+        ));
+      } else {
+        return null;
+      }
+      return principalFromClaims(payload);
     } catch {
       return null;
     }

@@ -8,12 +8,15 @@ import {
   UseGuards,
 } from "@nestjs/common";
 import { AuthGuard } from "../common/auth/auth.guard";
+import { RolesGuard } from "../common/auth/roles.guard";
+import { Roles } from "../common/auth/roles.decorator";
 import { CurrentPrincipal, type Principal } from "../common/principal";
 import { SourcingService, SourcingRequest } from "./sourcing.service";
 import type { SourcingResult } from "./sourcing-risk";
 
 @Controller("cases")
-@UseGuards(AuthGuard)
+@UseGuards(AuthGuard, RolesGuard)
+@Roles("owner", "compliance_officer", "staff")
 export class SourcingController {
   constructor(private readonly sourcing: SourcingService) {}
 

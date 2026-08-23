@@ -83,3 +83,35 @@ describe("loadEnv — DEMO_MODE", () => {
     });
   });
 });
+
+describe("loadEnv — real-auth verification config", () => {
+  const original = process.env;
+  const NO_AUTH = { DATABASE_URL: "postgres://x", DB_APP_ROLE: "authenticated" };
+  afterEach(() => {
+    process.env = original;
+  });
+
+  it("throws when real auth has neither JWKS URL nor JWT secret", () => {
+    jest.isolateModules(() => {
+      process.env = { ...original, ...NO_AUTH, NODE_ENV: "production" };
+      delete process.env.SUPABASE_JWT_SECRET;
+      delete process.env.SUPABASE_JWKS_URL;
+      const { loadEnv } = require("./env") as typeof import("./env");
+      expect(() => loadEnv()).toThrow(/SUPABASE_JWKS_URL.*SUPABASE_JWT_SECRET/);
+    });
+  });
+
+  it("accepts a JWKS URL alone (asymmetric keys, no shared secret)", () => {
+    jest.isolateModules(() => {
+      process.env = {
+        ...original,
+        ...NO_AUTH,
+        NODE_ENV: "production",
+        SUPABASE_JWKS_URL: "https://ref.supabase.co/auth/v1/.well-known/jwks.json",
+      };
+      delete process.env.SUPABASE_JWT_SECRET;
+      const { loadEnv } = require("./env") as typeof import("./env");
+      expect(loadEnv().SUPABASE_JWKS_URL).toContain("jwks.json");
+    });
+  });
+});

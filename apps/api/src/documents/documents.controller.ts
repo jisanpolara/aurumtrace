@@ -8,6 +8,8 @@ import {
   UseGuards,
 } from "@nestjs/common";
 import { AuthGuard } from "../common/auth/auth.guard";
+import { RolesGuard } from "../common/auth/roles.guard";
+import { Roles } from "../common/auth/roles.decorator";
 import { CurrentPrincipal, type Principal } from "../common/principal";
 import {
   DocumentsService,
@@ -16,7 +18,8 @@ import {
 } from "./documents.service";
 
 @Controller("cases")
-@UseGuards(AuthGuard)
+@UseGuards(AuthGuard, RolesGuard)
+@Roles("owner", "compliance_officer", "staff")
 export class DocumentsController {
   constructor(private readonly documents: DocumentsService) {}
 

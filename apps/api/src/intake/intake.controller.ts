@@ -6,12 +6,15 @@ import {
   UseGuards,
 } from "@nestjs/common";
 import { AuthGuard } from "../common/auth/auth.guard";
+import { RolesGuard } from "../common/auth/roles.guard";
+import { Roles } from "../common/auth/roles.decorator";
 import { CurrentPrincipal, type Principal } from "../common/principal";
 import { IntakeService, type IntakeResult } from "./intake.service";
 import { CreateCaseRequest } from "./dto";
 
 @Controller("intake")
-@UseGuards(AuthGuard)
+@UseGuards(AuthGuard, RolesGuard)
+@Roles("owner", "compliance_officer", "staff")
 export class IntakeController {
   constructor(private readonly intake: IntakeService) {}
 
