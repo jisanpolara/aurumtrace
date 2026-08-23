@@ -24,3 +24,6 @@ build/
 
 # test
 coverage/
+
+# tsc incremental build info
+*.tsbuildinfo
